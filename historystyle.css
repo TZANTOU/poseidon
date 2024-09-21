@@ -1,0 +1,55 @@
+body {
+    font-family: 'Fira Sans', sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+}
+
+.album {
+    background-color: #fff;
+    border: 2px solid #ccc;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    text-align: center;
+    width: 400px;
+    position: relative;
+}
+
+.info {
+    margin-bottom: 20px;
+}
+
+.year {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+
+.photo-gallery {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.photo-display {
+    width: 80px;
+    height: 80px;
+    margin-left: -30px; /* Για την επικάλυψη */
+    transition: transform 0.3s ease-in-out;
+    z-index: 1;
+    position: relative;
+}
+
+.photo-container:hover {
+    transform: scale(1.5); /* Μεγέθυνση όταν περνά το ποντίκι */
+    z-index: 10; /* Έτσι ώστε η εικόνα που μεγενθύνεται να είναι πάνω από τις άλλες */
+}
+
+.photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}

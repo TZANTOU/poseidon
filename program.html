@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Α.Π.Ο. Ποσειδών Διδύμων</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,700;1,800&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="images/logo.ico">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="images/logo.png" alt="logo">
+                </a>
+            </div>
+            <button class="menu-toggle" aria-label="Toggle Menu"><img src="images/Hamburger_icon.svg" alt="Menu"></button>
+            
+            <div class="main-menu">
+                <ul>
+                    <li class="hover-link">
+                        <a href="history.html">ΙΣΤΟΡΙΑ</a>
+                    </li>
+                    
+                    <li class="hover-link">
+                        <a href="team.html">ΟΜΑΔΑ</a>
+                    </li>
+
+                    <li class="hover-link">
+                        <a href="ranking.html">ΒΑΘΜΟΛΟΓΙΑ</a>
+                    </li>
+                    <li class="hover-link">
+                        <a href="program.html">ΠΡΟΓΡΑΜΜΑ</a>
+                    </li>
+                    <li>
+                        <a href="news.html">ΝΕΑ</a>
+                    </li>
+                    <li class="hover-link">
+                        <a href="poll.html">VOTE</a>
+                    </li>
+                    <li class="hover-link">
+                        <a href="stats.html">STATS</a>
+                    </li>
+                </ul>
+            </div>
+        </div>    
+    </nav>
+    
+<main>
+    <div id="schedule-list" class="schedule-list"></div>
+    <div class="calendar-container">
+        <div class="calendar">
+            <div class="calendar-header">
+                <button id="prev-month">« Προηγούμενος Μήνας</button>
+                <h1 id="month-year"></h1>
+                <button id="next-month">Επόμενος Μήνας »</button>
+            </div>
+            <div id="calendar-body" class="calendar-body">
+                <!-- Οι ημέρες θα προστεθούν εδώ -->
+            </div>
+        </div>
+    </div>
+
+</main>
+
+
+<template id="template-matchday">
+    <div class="matchday">
+        <h2 class="matchday-title"></h2>
+        <p class="match-date"></p>
+        <p class="days-until"></p>
+        <p class="opponent"></p>
+        <p class="home-away"></p>
+    </div>
+</template>
+</body>
+</html>

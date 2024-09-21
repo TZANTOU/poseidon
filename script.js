@@ -1,0 +1,334 @@
+const supportsTemplate = function(){
+    return 'content' in document.createElement('template')
+}
+const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    const day = String(date.getDate()).padStart(2, '0'); // Εξασφαλίζει ότι η μέρα έχει δύο ψηφία
+    const month = String(date.getMonth() + 1).padStart(2, '0'); // Μήνας από 0-11, οπότε προσθέτουμε 1
+    const year = date.getFullYear();
+    return `${day}/${month}/${year}`;
+};
+const loadNewsFromJSON = async () =>{
+    try{
+        const response = await fetch('data/latest-news.json');
+        const data = await response.json();
+
+        if(supportsTemplate()){
+            let temp = document.getElementById('template-news-card');
+            const articles = data.articles;
+            const totalArticles = articles.length;
+            
+
+            //  Ταξινόμηση άρθρων κατά ημερομηνία
+            articles.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+            articles.forEach((article, index) =>{
+                let content = temp.content.cloneNode(true);
+                content.getElementById('news-title').textContent = article.title;
+                content.getElementById('news-source').textContent = formatDate(article.date);
+                content.getElementById('news-desc').textContent = article.description;
+                content.getElementById('news-img').src = article.imageUrl;
+                
+                const reverseIndex = totalArticles - 1 - index;
+                let articleLink = document.createElement('a');
+                articleLink.href = `article.html?id=${reverseIndex}`;
+                articleLink.appendChild(content);
+                
+                
+                
+                
+                document.getElementById('news-container').appendChild(articleLink);
+
+            });
+        }    
+    }catch(error){
+            console.error("Error loading JSON:", error);
+    }
+
+};
+
+document.addEventListener('DOMContentLoaded', ()=>{
+    loadNewsFromJSON();
+})
+
+document.addEventListener('DOMContentLoaded', () => {
+    // Βρίσκουμε το κουμπί και το μενού
+    const menuToggle = document.querySelector('.menu-toggle');
+    const mobileMenu = document.querySelector('.main-menu');
+
+    // Όταν ο χρήστης πατάει το κουμπί, εναλλάσσουμε την εμφάνιση του μενού
+    menuToggle.addEventListener('click', function() {
+        mobileMenu.classList.toggle('active');
+    });
+});
+
+
+const loadScheduleFromJSON = async () => {
+    try {
+        const response = await fetch('data/schedule.json');
+        const data = await response.json();
+        
+        const template = document.getElementById('template-matchday');
+        const scheduleList = document.getElementById('schedule-list');
+        
+        data.games.forEach((game) => {
+            const clone = template.content.cloneNode(true);
+            clone.querySelector('.matchday-title').textContent = game.matchday;
+            clone.querySelector('.match-date').textContent = `Ημερομηνία: ${game.date}`;
+            
+            const daysUntil = calculateDaysUntil(game.date);
+            clone.querySelector('.days-until').textContent = `Απομένουν ${daysUntil} ημέρες`;
+
+            clone.querySelector('.opponent').textContent = `vs ${game.opponent}`;
+            
+            if (game.home_away === "Εντός") {
+                clone.querySelector('.matchday').style.backgroundColor = "red";
+            } else {
+                clone.querySelector('.matchday').style.backgroundColor = "blue";
+            }
+            scheduleList.appendChild(clone);
+        });
+        
+    } catch (error) {
+        console.error("Error loading schedule:", error);
+    }
+    
+};
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    loadScheduleFromJSON();
+});
+
+const calculateDaysUntil = (dateString) => {
+    const today = new Date();
+    const matchDate = new Date(dateString);
+    const timeDiff = matchDate - today;
+    const daysDiff = Math.ceil(timeDiff / (1000 * 60 * 60 * 24)); // Μετατροπή από milliseconds σε ημέρες
+    return daysDiff;
+};
+
+
+const generateCalendar = (year, month, games) => {
+    const monthYearEl  = document.querySelector('month-year');
+    const calendarBody = document.querySelector('calendar-body');
+
+    monthYearEl.textContent=`${new Date(year, month).toLocaleString('default', { month: 'long' })} ${year}`;
+    calendarBody.innerHTML = '';
+    // Δημιουργία ημερολογίου
+    const firstDay = new Date(year, month, 1).getDay();
+    const lastDay = new Date(year, month + 1, 0).getDate();
+    
+
+    // Εισαγωγή των ημερών του μήνα
+    for (let i = 0; i < firstDay; i++) {
+        calendarBody.innerHTML += '<div class="calendar-day empty"></div>'; // Κενά κελιά για τα προηγούμενα ημέρες
+    }
+
+    for (let day = 1; day <= lastDay; day++) {
+        let className = 'calendar-day';
+        let matchInfo = '';
+
+        const game = games.find(game => {
+            const gameDate = new Date(game.date);
+            return gameDate.getDate() === day && gameDate.getMonth() === month && gameDate.getFullYear() === year;
+        });
+        if (game) {
+            className += ' matchday';
+            matchInfo = `
+                <div class="match-info">
+                    <img src="${game.logo}" alt="${game.opponent}" style="width: 30px; height: 30px;">
+                    <span>${game.opponent}</span>
+                </div>
+            `;
+        }
+        calendarBody.innerHTML += `
+            <div class="${className}">
+                ${day}
+                ${matchInfo}
+            </div>
+        `;
+    }
+    const updateCalendar = async () => {
+        const games = await loadScheduleFromJSON();
+        generateCalendar(currentDate.getFullYear(), currentDate.getMonth(), games);
+    };
+    
+    prevMonthBtn.addEventListener('click', () => {
+        currentDate.setMonth(currentDate.getMonth() - 1);
+        updateCalendar();
+    });
+    
+    nextMonthBtn.addEventListener('click', () => {
+        currentDate.setMonth(currentDate.getMonth() + 1);
+        updateCalendar();
+    });
+    
+    updateCalendar();
+    
+};
+
+// Καλέστε τη συνάρτηση για να δημιουργήσετε το ημερολόγιο
+document.addEventListener('DOMContentLoaded', async() => {
+    const prevMonthBtn = document.getElementById('prev-month');
+    const nextMonthBtn = document.getElementById('next-month');
+    let currentDate = new Date();
+
+    const games = await loadScheduleFromJSON();
+
+    const updateCalendar = () => {
+        const year = currentDate.getFullYear();
+        const month = currentDate.getMonth();
+        generateCalendar(year, month, games);
+    };
+
+    prevMonthBtn.addEventListener('click', () => {
+        currentDate.setMonth(currentDate.getMonth() - 1);
+        updateCalendar();
+    });
+
+    nextMonthBtn.addEventListener('click', () => {
+        currentDate.setMonth(currentDate.getMonth() + 1);
+        updateCalendar();
+    });
+
+    // Φόρτωση του αρχικού ημερολογίου
+    updateCalendar();
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    const prevMonthBtn = document.getElementById('prev-month');
+    const nextMonthBtn = document.getElementById('next-month');
+    const calendarBody = document.getElementById('calendar-body');
+    const monthYearEl = document.getElementById('month-year');
+
+    if (!prevMonthBtn || !nextMonthBtn || !calendarBody || !monthYearEl) {
+        console.error("Missing calendar elements in the HTML!");
+        return;
+    }
+    let currentDate = new Date();
+
+    const loadCalendar = () => {
+        const year = currentDate.getFullYear();
+        const month = currentDate.getMonth();
+        
+        // Ενημέρωση τίτλου
+        monthYearEl.textContent = `${currentDate.toLocaleString('default', { month: 'long' })} ${year}`;
+
+        // Εύρεση πρώτης ημέρας και αριθμού ημερών
+        calendarBody.innerHTML = '';
+
+        // Δημιουργία ημέρες της εβδομάδας
+        const daysOfWeek = ['Κυρ', 'Δευ', 'Τρί', 'Τετ', 'Πεμ', 'Παρ', 'Σάβ'];
+        const daysOfWeekRow = document.createElement('div');
+        daysOfWeekRow.classList.add('days-of-week');
+        daysOfWeek.forEach(day => {
+            const dayElement = document.createElement('div');
+            dayElement.textContent = day;
+            daysOfWeekRow.appendChild(dayElement);
+        });
+        calendarBody.appendChild(daysOfWeekRow);
+        
+        const firstDay = new Date(year, month, 1);
+        const lastDay = new Date(year, month + 1, 0);
+        const daysInMonth = lastDay.getDate();
+        
+        // Εύρεση πρώτης ημέρας της εβδομάδας
+        const startDay = firstDay.getDay();
+        
+        // Δημιουργία των ημερών του μήνα
+        
+        
+        // Κενά κελιά μέχρι την πρώτη ημέρα του μήνα
+        for (let i = 0; i < startDay; i++) {
+            const emptyCell = document.createElement('div');
+            emptyCell.classList.add('empty');
+            calendarBody.appendChild(emptyCell);
+        }
+        
+        for (let day = 1; day <= daysInMonth; day++) {
+            const dayElement = document.createElement('div');
+            dayElement.textContent = day;
+            calendarBody.appendChild(dayElement);
+        }
+    };
+
+    prevMonthBtn.addEventListener('click', () => {
+        currentDate.setMonth(currentDate.getMonth() - 1);
+        loadCalendar();
+    });
+
+    nextMonthBtn.addEventListener('click', () => {
+        currentDate.setMonth(currentDate.getMonth() + 1);
+        loadCalendar();
+    });
+
+    // Φόρτωση του αρχικού ημερολογίου
+    loadCalendar();
+});
+
+
+
+const loadCarouselFromJSON = async () => {
+    let currentSlide = 0;
+    let slides =[];
+
+
+    try{
+        const response = await fetch('data/latest-news.json');
+        const data = await response.json();
+        const carousel = document.getElementById('carousel');
+        
+        const articles = data.articles;
+        const recentArticles = articles.slice(-3).reverse();
+        const totalArticles = articles.length;
+        
+        recentArticles.forEach((article, index) => {
+            const articleElement = document.createElement('div');
+            articleElement.classList.add('carousel-item');
+
+            const reverseIndex = totalArticles - 1 - index;
+            const articleLink = `article.html?id=${reverseIndex}`;
+
+            articleElement.innerHTML = `
+                <img src="${article.imageUrl}" alt="${article.title}" class="carousel-image">
+                <h2>${article.title}</h2>
+                <p>${article.description}</p>
+                <a href="${articleLink}" class="read-more">Διαβάστε περισσότερα</a>
+            `;
+
+            // Προσθήκη στο carousel
+            carousel.appendChild(articleElement);
+        });
+        
+        slides = document.querySelectorAll('.carousel-item');
+        const totalSlides = slides.length;
+        function updateCarousel() {
+            const carousel = document.querySelector('.carousel');
+            carousel.style.transform = `translateX(-${currentSlide * 100}%)`;
+        }
+        document.querySelector('.next-button').addEventListener('click', () => {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            updateCarousel();
+        });
+        
+        document.querySelector('.prev-button').addEventListener('click', () => {
+            currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+            updateCarousel();
+        });
+         // Αυτόματη εναλλαγή κάθε 5 δευτερόλεπτα
+         setInterval(() => {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            updateCarousel();
+            }, 5000);
+    }catch(error){
+        console.error('Error loading articles for carousel:',error);
+    }
+};
+document.addEventListener('DOMContentLoaded', () => {
+    loadCarouselFromJSON();
+});
+
+
+
+

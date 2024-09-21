@@ -1,0 +1,74 @@
+{
+    "players": [
+      {
+        "id": "1",
+         "name": "Αργύρης Αλευράς",
+        "position": "GK",
+        "image": "https://i.ytimg.com/vi/wWyD7PakZ2A/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLB7jg8pKXDpkhfFJvN1vSzssbEj2w"
+      },
+      
+      {
+        "id":"5",
+         "name": "Αποστόλης Οικονομόπουλος",
+        "position": "CB",
+        "image": "https://i.ytimg.com/vi/wWyD7PakZ2A/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLB7jg8pKXDpkhfFJvN1vSzssbEj2w"
+     },
+      {
+        
+         "id":"4",
+         "name": "Παναγιώτης Σκαλτσάς",
+        "position": "CB",
+        "image": "https://i.ytimg.com/vi/wWyD7PakZ2A/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLB7jg8pKXDpkhfFJvN1vSzssbEj2w"
+     },
+     {
+        "id":"3",
+         "name": "Αλκιβιάδης Καζάς",
+        "position": "LB/RB",
+        "image": "https://i.ytimg.com/vi/wWyD7PakZ2A/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLB7jg8pKXDpkhfFJvN1vSzssbEj2w"
+     },
+     {
+        "id":"6",
+         "name": "Χριστόφορος Κουτσοποδιώτης",
+        "position": "RB/CDM/CAM",
+        "image": "https://i.ytimg.com/vi/wWyD7PakZ2A/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLB7jg8pKXDpkhfFJvN1vSzssbEj2w"
+     },
+     {
+        "id":"7",
+         "name": "Agustin Tresa",
+        "position": "CDM/CAM",
+        "image": "https://i.ytimg.com/vi/wWyD7PakZ2A/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLB7jg8pKXDpkhfFJvN1vSzssbEj2w"
+     },
+     {
+        "id":"10",
+         "name": "Χρήστο Κέλλι",
+        "position": "ST/RW/LW/CAM",
+        "image": "https://i.ytimg.com/vi/wWyD7PakZ2A/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLB7jg8pKXDpkhfFJvN1vSzssbEj2w"
+     },
+     {
+      "id":"11",  
+      "name": "Ανάργυρος Αποστόλου",
+        "position": "RW",
+        "image": "https://i.ytimg.com/vi/wWyD7PakZ2A/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLB7jg8pKXDpkhfFJvN1vSzssbEj2w"
+     },
+     {
+        "id":"8",
+         "name": "Ανάργυρος Λαζάρου",
+        "position": "CB/CDM",
+        "image": "https://i.ytimg.com/vi/wWyD7PakZ2A/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLB7jg8pKXDpkhfFJvN1vSzssbEj2w"
+     },
+     {
+      "id":"9",  
+      "name": "Νικόλας Λαζάρου",
+        "position": "ST",
+        "image": "https://i.ytimg.com/vi/wWyD7PakZ2A/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLB7jg8pKXDpkhfFJvN1vSzssbEj2w"
+     },
+     {
+      "id":"13",  
+      "name": "Γιώργος Μπάρδης",
+        "position": "LB",
+        "image": "https://i.ytimg.com/vi/wWyD7PakZ2A/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLB7jg8pKXDpkhfFJvN1vSzssbEj2w"
+     }
+     
+
+    ]
+  }

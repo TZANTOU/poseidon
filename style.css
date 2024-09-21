@@ -1,0 +1,1115 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Fira Sans', sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    background-color: white;
+
+
+}
+
+main {
+    margin: 80px;
+    padding-top: 250px;
+    margin-top: 0px;
+}
+
+a {
+    text-decoration: none;
+    color: #ededed;
+}
+
+ul {
+    list-style: none;
+}
+
+img {
+
+    max-width: 100%;
+}
+
+.timeline-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin: 20px;
+
+}
+
+.timeline {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-left: 50px;
+    position: relative;
+    width: 70%;
+    flex: 1;
+    margin-right: 20px;
+
+
+
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    left: 25px;
+    top: 0;
+    height: 100%;
+    width: 4px;
+    background-color: #333;
+}
+
+.event {
+    margin: 10px 0;
+    padding: 10px;
+    border-left: 2px solid #333;
+}
+
+.year {
+    font-weight: bold;
+    font-size: 1.5em;
+    margin-bottom: 5px;
+
+}
+
+.details {
+    font-size: 1.1em;
+    color: #555;
+}
+
+.event:hover .details {
+    font-weight: bold;
+    color: #333;
+}
+
+.event img {
+    display: block;
+    position: relative;
+    top: 0;
+    left: 20px;
+    /* Εμφανίζεται δίπλα στη χρονιά */
+    width: 200px;
+    height: auto;
+    object-fit: cover;
+    border-radius: 2px;
+    filter: blur(1px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    transition: left 0.5s ease, filter 0.5s ease;
+}
+
+.event img.show {
+    filter: blur(0px);
+    top: px;
+    left: 300px;
+    /* Εμφανίζεται δίπλα στη χρονιά */
+    width: 400px;
+    transition: left 0.5s ease, filter 0.5s ease;
+}
+
+.c {
+    display: flex;
+    justify-content: flex-start;
+    /* Στοιχεία στην αρχή της γραμμής */
+    align-items: flex-start;
+}
+
+
+.left-column {
+
+    position: relative;
+    width: 25%;
+    float: left;
+    padding: 10px;
+    background-color: #f4f4f4;
+    margin-right: 20px;
+
+}
+
+.left-column h3 {
+    text-align: center;
+}
+
+.next-match-container {
+    width: 25%;
+    padding: 15px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 20px;
+}
+
+.next-match img {
+    width: 200px;
+    height: 200px;
+    object-fit: contain;
+    mix-blend-mode: difference;
+    filter: invert(1) brightness(100%) contrast(100%);
+}
+
+.next-match-text{
+    font-size: 24px;
+    font-weight: bold;
+    text-decoration:dotted;
+}
+
+.next-match .vs-text {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 0 20px;
+}
+
+.carousel-container {
+    position: relative;
+    width: 75%;
+    max-width: 800px;
+    margin: 0 auto;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.carousel {
+    width: 800px;
+    height: 600px;
+
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.carousel p {
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 15px;
+}
+
+.carousel h2 {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background: linear-gradient(to top, rgba(128, 18, 18, 0.9), rgba(0, 0, 0, 0.3));
+    /* Σκοτεινό γκρι gradient */
+    color: white;
+    padding: 10px;
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    z-index: 10;
+}
+
+.carousel-item {
+    position: relative;
+    height: 0;
+    padding-bottom: 56.25%;
+    min-width: 100%;
+    box-sizing: border-box;
+    text-align: center;
+
+}
+
+.carousel-image {
+    width: 100%;
+    max-width: 1280px;
+    /* Μέγιστο πλάτος */
+    height: auto;
+    /* Διατηρεί την αναλογία 16:9 */
+    aspect-ratio: 16 / 9;
+    /* Προσθέτει την αναλογία 16:9 */
+    object-fit: cover;
+    /* Διασφαλίζει ότι η εικόνα καλύπτει το χώρο */
+    margin-bottom: 20px;
+    filter: saturate(1.5);
+}
+.ribbon-container {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    width: 100%;
+    background: repeating-linear-gradient(
+        45deg,  /* Διαγώνιες γραμμές 45 μοιρών */
+        red,
+        red 10px,
+        white 10px,
+        white 20px
+    );
+    color: black;
+    text-align: center;
+    padding: 10px 0;
+    z-index: 9999; /* Να βρίσκεται πάνω από όλο το περιεχόμενο */
+    font-size: 18px;
+    font-weight: bold;
+    opacity: 0.8;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5); /* Προσθέτει μια σκιά */
+}
+
+.ribbon-text {
+    
+    text-transform: uppercase;
+    z-index: 10000;
+}
+
+
+.read-more {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: white;
+    /* Αρχικό χρώμα */
+    color: black;
+    border: 2px solid #007bff;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.read-more:hover {
+    background-color: #007bff;
+    /* Γίνεται μπλε όταν το πατάς */
+    color: white;
+}
+
+.prev-button,
+.next-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    padding: 10px;
+    z-index: 1;
+}
+
+.prev-button {
+    left: 10px;
+}
+
+.next-button {
+    right: 10px;
+}
+
+#ranking-container table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#ranking-container th,
+#ranking-container td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+}
+
+#ranking-container th {
+    background-color: #4CAF50;
+    color: white;
+}
+
+
+
+
+
+.navbar {
+    background: rgb(181, 14, 14);
+    margin: 0;
+    padding: 10px 0;
+    position: fixed;
+    z-index: 10;
+    width: 100%;
+
+
+}
+
+.navbar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+
+
+}
+
+.navbar .main-menu ul {
+    display: flex;
+    gap: 10px;
+}
+
+.navbar ul li a {
+    padding: 10px 20px;
+    display: block;
+    font-weight: 600;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+
+}
+
+.container-sm {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.logo {
+    width: 150px;
+}
+
+@media(max-width:576px) {
+    .navbar .logo {
+        width: 80px;
+    }
+
+    .matchday {
+        flex-direction: column;
+        padding: 10px;
+        border-radius: 5px;
+        font-size: 14px;
+        text-align: center;
+    }
+
+    .matchday h1,
+    .matchday p {
+        font-size: 16px;
+        text-align: left;
+        margin-bottom: 5px;
+    }
+
+    .matchday-content {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .schedule-container {
+        padding: 10px;
+    }
+
+    .matchday .opponent {
+        text-align: center;
+        word-wrap: break-word;
+        /* Breaks long words */
+        overflow-wrap: break-word;
+        /* Ensures words don't overflow */
+        white-space: normal;
+        /* Prevents text from staying in one line */
+        flex-shrink: 1;
+
+    }
+}
+
+.hover-link:hover {
+    color: rgb(0, 118, 173);
+}
+
+.hover-link {
+    cursor: pointer;
+}
+
+.cards-container {
+    justify-content: space-between;
+    flex-wrap: wrap;
+    row-gap: 20px;
+    align-items: start;
+}
+
+.card {
+    width: 360px;
+    min-height: 400px;
+    box-shadow: 0 0 4px #ffd4d4;
+    border-radius: 4px;
+    cursor: pointer;
+    background-color: #fff;
+    overflow: hidden;
+    flex: 0 1 calc(33.333% - 15x);
+    box-sizing: border-box;
+    width: 100%;
+    margin: 10px;
+}
+
+@media (max-width: 992px) {
+    .card {
+        flex: 0 1 calc(50% - 20px);
+        /* Σε οθόνες κάτω από 992px, δείχνουμε 2 κάρτες ανά σειρά */
+    }
+}
+
+@media (max-width: 576px) {
+    .matchday-content {
+        flex-direction: column;
+        /* Στοιχίζει τα στοιχεία κάθετα σε μικρές οθόνες */
+        align-items: flex-start;
+    }
+
+    .matchday h2,
+    .matchday p {
+        margin: 5px 0;
+        /* Μικρότερη απόσταση στα στοιχεία σε κινητές συσκευές */
+    }
+}
+
+@media (max-width: 768px) {
+    .c {
+        flex-direction: column;
+        /* Σε μικρές οθόνες, οι στήλες θα στοιχίζονται κάθετα */
+    }
+
+    .next-match img {
+        width: 50px;
+        height: 50px;
+        
+    }
+    .next-match .vs-text {
+        font-size: 24px;
+        font-weight: bold;
+        margin: 0 20px;
+    }
+
+    .next-match-container{
+        width: 100%;
+        padding: 0px;
+        margin-left: 0px;
+        border-radius: 0px;
+
+    }
+    .next-match-text{
+        display: block;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+
+    .carousel-container {
+
+        width: 100%;
+        max-width: 800px;
+        margin: 0 auto;
+        overflow: hidden;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        order: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 0;
+    }
+
+    .left-column {
+        order: 2;
+        width: 100%;
+        padding: 10px;
+        margin-top: 20px;
+
+    }
+
+    .carousel {
+        width: 100%;
+        height: 425px;
+
+    }
+
+    .carousel p {
+
+        padding: 5px;
+    }
+
+
+    .timeline {
+        display: block;
+        padding: 0;
+        width: 100%;
+    }
+
+    .event {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 20px 0;
+        position: relative;
+    }
+
+    .year,
+    .details {
+        text-align: center;
+        margin-bottom: 10px;
+    }
+
+    .event img {
+
+        transition: transform 0.3s ease-in-out;
+    }
+
+    .event img.show {
+        transform: scale(1.1);
+        left: 0;
+        /* Εμφανίζεται δίπλα στη χρονιά */
+
+    }
+
+    .card {
+        flex: 0 1 100%;
+        /* Σε μικρές οθόνες, δείχνουμε 1 κάρτα ανά σειρά */
+        min-height: 350px;
+    }
+
+    .navbar {
+        padding: 5px;
+    }
+
+    .navbar .logo {
+        width: 100px;
+    }
+
+    .navbar .main-menu {
+        display: none;
+        transition: opacity 0.3s ease, max-height 0.3s ease;
+        margin-top: 75px;
+    }
+
+    .navbar .main-menu.active {
+        display: block;
+        background: linear-gradient(to bottom, #f3f3f3, #e0e0e0);
+        padding: 15px;
+        border-radius: 8px;
+        position: absolute;
+        top: 49px;
+        right: 0;
+        width: 50%;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        transition: opacity 0.3s ease, max-height 0.3s ease;
+
+
+    }
+
+    .navbar .main-menu ul {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .news-container {
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 10px;
+    }
+
+    .card-header img {
+        height: 200px;
+    }
+
+    .container {
+        padding: 0 10px;
+    }
+
+    .menu-toggle {
+        display: block;
+        position: absolute;
+        right: 20px;
+        top: 20px;
+
+    }
+
+    .main-menu ul {
+        flex-direction: column;
+        text-align: center;
+        gap: 5px;
+
+    }
+
+    .navbar ul li {
+        margin-bottom: 10px;
+    }
+
+    .navbar ul li a {
+        background-color: #b50e0e;
+        color: white;
+        border-radius: 2px;
+        margin-top: 2px;
+        margin-bottom: 2px;
+        font-size: 14px;
+        padding: 8px 8px;
+
+    }
+
+
+
+}
+
+@media(min-width: 769px) {
+    .menu-toggle {
+        display: none;
+
+    }
+
+    .navbar .main-menu {
+        display: flex;
+    }
+}
+
+.navbar ul li a:hover {
+    background-color: #ff4d4d;
+}
+
+.card-content {
+    padding: 12px;
+    color: #333;
+}
+
+.news-source {
+    margin-block: 12px;
+}
+
+.card-header {
+    position: relative;
+    overflow: hidden;
+}
+
+.card-header img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.5s ease, filter 0.5s ease;
+}
+
+.card-header::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(rgba(255, 0, 0, 0.3), rgba(255, 0, 0, 0.3));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+
+}
+
+.card-header:hover::after {
+    opacity: 1;
+}
+
+.card-header:hover img {
+    transform: scale(1.5);
+    filter: saturate(1.5);
+}
+
+.news-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 15px;
+
+}
+
+.menu-toggle {
+    border: none;
+    padding: 0px;
+    cursor: pointer;
+    z-index: 11;
+    position: relative;
+    mix-blend-mode: screen;
+}
+
+.menu-toggle img {
+    width: 50px;
+    height: auto;
+
+}
+
+.schedule-container {
+    margin-top: 50px;
+    padding: 20px;
+}
+
+.schedule-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.matchday .home-away {
+    font-weight: bold;
+    color: #333;
+}
+
+.matchday {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+
+
+    padding: 15px;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: left;
+}
+
+.matchday p {
+    margin-bottom: 8px;
+    font-size: 20px;
+    color: #fff;
+    margin-right: 20px;
+    /* Απόσταση μεταξύ των στοιχείων */
+    white-space: nowrap;
+    /* Για να μην πάει σε επόμενη γραμμή */
+
+}
+
+.matchday h2 {
+    color: #000000;
+    margin-bottom: 10px;
+    margin-right: 20px;
+    /* Απόσταση μεταξύ των στοιχείων */
+    white-space: nowrap;
+    /* Για να μην πάει σε επόμενη γραμμή */
+}
+
+.matchday-content {
+    display: flex;
+    flex-direction: row;
+    /* Στοιχίζει τα στοιχεία οριζόντια */
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+
+}
+
+
+.calendar-container {
+    margin-top: 50px;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    margin: 20px;
+
+}
+
+.calendar {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 900px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    align-items: center;
+}
+
+.calendar-header {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    background-color: #f5f5f5;
+    font-weight: bold;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+#calendar-body {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    grid-gap: 10px;
+    width: 100%;
+    padding: 10px;
+}
+
+#calendar-body div {
+    padding: 10px;
+    text-align: center;
+    border: 1px solid #ddd;
+}
+
+#calendar-body div.empty {
+    background-color: transparent;
+}
+
+.days-of-week {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    text-align: center;
+    font-weight: bold;
+    background-color: #ddd;
+    padding: 5px 0;
+
+}
+
+.calendar-day {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    min-height: 50px;
+}
+
+.calendar-day.matchday {
+    background-color: lightgreen;
+}
+
+.calendar-day.empty {
+    background-color: transparent;
+    border: none;
+}
+
+.match-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 5px;
+}
+
+.match-info img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+}
+
+.days-of-week div,
+.calendar-body div {
+    padding: 10px;
+    text-align: center;
+    border: 1px solid #ddd;
+}
+
+.calendar-body {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 2px;
+
+}
+
+.calendar-body div.empty {
+    background-color: transparent;
+}
+
+.calendar-day.matchday {
+    position: relative;
+    background-color: #f0f0f0;
+}
+
+.calendar-day.matchday .match-info {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(255, 0, 0, 0.3);
+    /* Χρώμα για εντός έδρας */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 4px;
+}
+
+.calendar-day.matchday.away .match-info {
+    background-color: rgba(0, 0, 255, 0.3);
+    /* Χρώμα για εκτός έδρας */
+}
+
+.calendar-day img {
+    max-width: 50px;
+    height: auto;
+    mix-blend-mode: difference;
+    filter: invert(1) grayscale(100%) brightness(100%) contrast(100%);
+}
+
+#calendar {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    grid-gap: 5px;
+    padding: 10px;
+    justify-content: center;
+}
+
+#calendar div {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+.calendar button {
+    padding: 10px 20px;
+    margin: 10px;
+    cursor: pointer;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    border-radius: 5px;
+}
+
+.calendar button:hover {
+    background-color: #0056b3;
+}
+
+h1 {
+    margin: 20px 0;
+}
+
+table {
+    width: 80%;
+    max-width: 600px;
+    /* Περιορίζουμε το μέγιστο πλάτος */
+    margin: 20px auto;
+    /* Κεντράρισμα του πίνακα */
+    border-collapse: collapse;
+    font-size: 14px;
+    /* Μικρότερη γραμματοσειρά */
+    text-align: left;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    /* Προσθέτουμε σκιά για αισθητικό αποτέλεσμα */
+    border-radius: 10px;
+    /* Στρογγυλεμένες γωνίες */
+    overflow: hidden;
+}
+
+table thead th {
+    background-color: #007bff;
+    color: white;
+    padding: 10px;
+}
+
+table tbody td {
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
+    text-align: center;
+}
+
+table tbody tr:nth-child(even) {
+    background-color: #ffcccc;
+    /* Απαλό κόκκινο για ζυγές θέσεις */
+}
+
+table tbody tr:nth-child(odd) {
+    background-color: #cce5ff;
+    /* Απαλό μπλε για μονές θέσεις */
+}
+
+table tbody tr:first-child {
+    background-color: lightgreen;
+    /* Απαλό πράσινο για 1η θέση */
+}
+
+table tbody tr:nth-last-child(1),
+table tbody tr:nth-last-child(2) {
+    background-color: lightcoral;
+    /* Απαλό κόκκινο για τις δύο τελευταίες θέσεις */
+}
+
+@media only screen and (max-width: 768px) {
+    table {
+        font-size: 14px;
+    }
+
+    table thead th {
+        padding: 8px;
+    }
+
+    table tbody td {
+        padding: 8px;
+    }
+}
+
+.article-container {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin: 30px 0;
+}
+
+.article-container h1 {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.article-container h6 {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.article-container img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#article-content {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #444;
+    text-align: justify;
+}
+
+@media only screen and (max-width: 480px) {
+    .article-container h1 {
+        font-size: 1.3rem;
+    }
+
+    #article-content {
+        font-size: 0.9rem;
+    }
+}
+
+#article-content a {
+    color: #b50e0e;
+    text-decoration: underline;
+}
+
+.players-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    justify-items: center;
+}
+
+.player-card {
+    background-color: #f5f5f5;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.player-card:hover {
+    transform: scale(1.05);
+}
+
+.player-card img {
+    width: 100%;
+    height: auto;
+    max-width: 200px;
+    border-radius: 50%;
+}
+
+.player-name {
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.player-position {
+    font-size: 14px;
+    color: #777;
+    margin-top: 5px;
+}

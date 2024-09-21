@@ -1,0 +1,97 @@
+{
+    "games": [
+        {
+            "matchday": "Κύπελλο Α' Φάση Α' Όμιλος",
+            "opponent": "ΚΟΡΩΝΙΣ ΚΟΙΛΑΔΑΣ",
+            "date": "2024-09-22",
+            "home_away": "Εκτός",
+            "logo":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTnw38TAZgW-mn24YgLRj8iVy4p3bCvpdauWA&s"
+        },
+        {
+            "matchday": "1η Αγωνιστική",
+            "opponent": "ΚΟΡΩΝΙΣ ΚΟΙΛΑΔΑΣ",
+            "date": "2024-09-29",
+            "home_away": "Εντός",
+            "logo":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTnw38TAZgW-mn24YgLRj8iVy4p3bCvpdauWA&s"
+        },
+        {
+            "matchday": "2η Αγωνιστική",
+            "opponent": "ΗΡΑΚΛΗΣ ΚΑΡΥΑΣ",
+            "date": "2024-10-05",
+            "home_away": "Εκτός"
+        },
+        {
+            "matchday": "3η Αγωνιστική",
+            "opponent": "ΑΤΡΟΜΗΤΟΣ ΠΑΝΑΡΙΤΙΟΥ ΝΑΥΠΛΙΟΥ",
+            "date": "2024-10-13",
+            "home_away": "Εκτός"
+        },
+        {
+            "matchday": "4η Αγωνιστική",
+            "opponent": "ΠΑΝΑΣΙΝΑΪΚΟΣ",
+            "date": "2024-10-20",
+            "home_away": "Εντός"
+        },
+        {
+            "matchday": "5η Αγωνιστική",
+            "opponent": "ΑΡΓΟΝΑΥΤΗΣ",
+            "date": "2024-10-27",
+            "home_away": "Εκτός"
+        },
+        {
+            "matchday": "6η Αγωνιστική",
+            "opponent": "ΤΡΟΙΖΗΝΙΑΚΟΣ",
+            "date": "2024-11-04",
+            "home_away": "Εντός"
+        },
+        {
+            "matchday": "7η Αγωνιστική",
+            "opponent": "ΕΘΝΙΚΟΣ ΤΟΛΟΥ",
+            "date": "2024-11-09",
+            "home_away": "Εκτός"
+        },
+        {
+            "matchday": "8η Αγωνιστική",
+            "opponent": "ΠΑΟΚ ΚΟΥΤΣΟΠΟΔΙΟΥ",
+            "date": "2024-11-16",
+            "home_away": "Εντός",
+            "logo":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTnw38TAZgW-mn24YgLRj8iVy4p3bCvpdauWA&s"
+        },
+        {
+            "matchday": "9η Αγωνιστική",
+            "opponent": "ΕΡΜΗΣ ΚΙΒΕΡΙΟΥ",
+            "date": "2024-11-24",
+            "home_away": "Εντός",
+            "logo":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTnw38TAZgW-mn24YgLRj8iVy4p3bCvpdauWA&s"
+        },
+        {
+            "matchday": "10η Αγωνιστική",
+            "opponent": "ΔYΟΒΟΥΝΙΩΤΗΣ",
+            "date": "2024-12-01",
+            "home_away": "Εκτός",
+            "logo":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTnw38TAZgW-mn24YgLRj8iVy4p3bCvpdauWA&s"
+        },
+        {
+            "matchday": "11η Αγωνιστική",
+            "opponent": "ΕΝΩΣΗ ΕΡΜΙΟΝΙΔΑΣ",
+            "date": "2024-12-08",
+            "home_away": "Εντός",
+            "logo":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTnw38TAZgW-mn24YgLRj8iVy4p3bCvpdauWA&s"
+        },
+        {
+            "matchday": "12η Αγωνιστική",
+            "opponent": "ΣΠΕΤΣΕΣ ",
+            "date": "2024-12-15",
+            "home_away": "Εκτός",
+            "logo":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTnw38TAZgW-mn24YgLRj8iVy4p3bCvpdauWA&s"
+        },
+        {
+            "matchday": "13η Αγωνιστική",
+            "opponent": "ΑΣΤΕΡΑΣ ΔΡΕΠΑΝΙΑΚΟΣ",
+            "date": "2024-12-22",
+            "home_away": "Εντός",
+            "logo":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTnw38TAZgW-mn24YgLRj8iVy4p3bCvpdauWA&s"
+        }
+        
+    ]
+}

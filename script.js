@@ -8,44 +8,93 @@ const formatDate = (dateString) => {
     const year = date.getFullYear();
     return `${day}/${month}/${year}`;
 };
+
+const articlesPerPage = 12;
+let currentPage = 1;
+let articles = [];
+
 const loadNewsFromJSON = async () =>{
     try{
         const response = await fetch('data/latest-news.json');
         const data = await response.json();
+        articles = data.articles;
+        const totalArticles = articles.length;
+        const totalPages = Math.ceil(totalArticles / articlesPerPage);
 
-        if(supportsTemplate()){
-            let temp = document.getElementById('template-news-card');
-            const articles = data.articles;
-            const totalArticles = articles.length;
-            
-
-            //  Ταξινόμηση άρθρων κατά ημερομηνία
-            articles.sort((a, b) => new Date(b.date) - new Date(a.date));
-
-            articles.forEach((article, index) =>{
-                let content = temp.content.cloneNode(true);
-                content.getElementById('news-title').textContent = article.title;
-                content.getElementById('news-source').textContent = formatDate(article.date);
-                content.getElementById('news-desc').textContent = article.description;
-                content.getElementById('news-img').src = article.imageUrl;
-                
-                const reverseIndex = totalArticles - 1 - index;
-                let articleLink = document.createElement('a');
-                articleLink.href = `article.html?id=${reverseIndex}`;
-                articleLink.appendChild(content);
-                
-                
-                
-                
-                document.getElementById('news-container').appendChild(articleLink);
-
-            });
-        }    
+        articles.sort((a, b) => new Date(b.date) - new Date(a.date));
+        displayArticles(articles, currentPage);
+        
+        createPagination(totalPages);
     }catch(error){
             console.error("Error loading JSON:", error);
     }
 
 };
+
+const displayArticles = (articles, page) => {
+    if(supportsTemplate()){
+        let temp = document.getElementById('template-news-card');
+        let newsContainer = document.getElementById('news-container');
+
+        newsContainer.innerHTML = '';
+        const totalArticles = articles.length;
+        
+        const startIndex = (page - 1) * articlesPerPage;
+        const endIndex = Math.min(startIndex + articlesPerPage, totalArticles);
+
+        
+
+        const articlesToDisplay = articles.slice(startIndex, endIndex);
+        articlesToDisplay.forEach((article, index) =>{
+            let content = temp.content.cloneNode(true);
+            content.getElementById('news-title').textContent = article.title;
+            content.getElementById('news-source').textContent = formatDate(article.date);
+            content.getElementById('news-desc').textContent = article.description;
+            content.getElementById('news-img').src = article.imageUrl;
+            
+            const reverseIndex = totalArticles - 1 - index;
+            let articleLink = document.createElement('a');
+            articleLink.href = `article.html?id=${reverseIndex}`;
+            articleLink.appendChild(content);
+            
+            
+            
+            
+            newsContainer.appendChild(articleLink);
+
+        });
+
+    }    
+}
+const createPagination = (totalPages) => {
+    const pagination = document.getElementById('pagination');
+    pagination.innerHTML = '';
+
+    for (let i = 1; i <= totalPages; i++) {
+        const pageButton = document.createElement('button');
+        pageButton.textContent = i;
+        pageButton.classList.add('page-btn');
+        if(i==1){
+            return;
+        }
+        if (i === currentPage) {
+            pageButton.classList.add('active');
+        }
+        pageButton.addEventListener('click', () => {
+            currentPage = i;
+            displayArticles(articles, currentPage); // Επαναφόρτωση των άρθρων για τη νέα σελίδα
+
+            const previousActiveButton = document.querySelector('.page-btn.active');
+            if (previousActiveButton) {
+                previousActiveButton.classList.remove('active');
+            }
+            
+            // Προσθήκη active στο τρέχον κουμπί
+            pageButton.classList.add('active');
+        });
+        pagination.appendChild(pageButton);
+    }
+}
 
 document.addEventListener('DOMContentLoaded', ()=>{
     loadNewsFromJSON();

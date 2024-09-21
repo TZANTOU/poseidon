@@ -366,6 +366,30 @@ img {
     margin: 0 auto;
     padding: 0 20px;
 }
+.pagination {
+    text-align: center;
+    margin: 20px 0;
+}
+.page-btn {
+    background-color: white;
+    border: 1px solid #ddd;
+    padding: 10px 15px;
+    margin: 0 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    color: #333;
+    border-radius: 5px;
+}
+
+.page-btn.active {
+    background-color: #b50e0e;
+    color: white;
+}
+
+.page-btn:hover {
+    background-color: #ddd;
+}
+
 
 .logo {
     width: 150px;
@@ -464,6 +488,9 @@ img {
 }
 
 @media (max-width: 768px) {
+    .news-header h1 {
+        padding-left: 15px;
+    }
     .article-container{
         padding: 0;
         margin: 20px auto;
@@ -577,8 +604,14 @@ img {
 
     .card {
         flex: 0 1 100%;
+        margin: 0;
         /* Σε μικρές οθόνες, δείχνουμε 1 κάρτα ανά σειρά */
         min-height: 350px;
+    }
+
+    main{
+        margin: 0;
+        padding-top: 180px;
     }
 
     .navbar {
@@ -1063,13 +1096,19 @@ table tbody tr:nth-last-child(2) {
     color: #666;
     margin-bottom: 20px;
 }
-
+.article-header {
+    padding: 20px;
+    background: linear-gradient(135deg, #8b0000, #000080);  /* Διαγώνιο gradient μπορντό-μπλε */
+    color: white;
+    text-align: center;
+}
 .article-container img {
-    max-width: 100%;
+    max-width: 900px;
     height: auto;
     margin-bottom: 20px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    aspect-ratio: 16/10;
 }
 
 #article-content {
@@ -1083,7 +1122,7 @@ table tbody tr:nth-last-child(2) {
     margin-bottom: 1.2rem;  /* Απόσταση μεταξύ παραγράφων */
 }
 
-#article-description {
+#article-description { 
     color: #666;
     margin-bottom: 20px;
 }

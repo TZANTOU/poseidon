@@ -464,6 +464,22 @@ img {
 }
 
 @media (max-width: 768px) {
+    .article-container{
+        padding: 0;
+        margin: 20px auto;
+    }
+    .article-header h1 {
+        font-size: 1.5rem;
+    }
+
+    .article-header p {
+        font-size: 1rem;
+    }
+
+    #article-content {
+        font-size: 1rem;
+        line-height: 1.6;
+    }
     .c {
         flex-direction: column;
         /* Σε μικρές οθόνες, οι στήλες θα στοιχίζονται κάθετα */
@@ -1023,6 +1039,7 @@ table tbody tr:nth-last-child(2) {
     table tbody td {
         padding: 8px;
     }
+    
 }
 
 .article-container {
@@ -1031,12 +1048,14 @@ table tbody tr:nth-last-child(2) {
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
     padding: 20px;
     margin: 30px 0;
+    
 }
 
 .article-container h1 {
     font-size: 2rem;
     color: #333;
     margin-bottom: 10px;
+    
 }
 
 .article-container h6 {
@@ -1058,15 +1077,28 @@ table tbody tr:nth-last-child(2) {
     line-height: 1.6;
     color: #444;
     text-align: justify;
+    margin-bottom: 20px;
+}
+#article-content p {
+    margin-bottom: 1.2rem;  /* Απόσταση μεταξύ παραγράφων */
 }
 
 @media only screen and (max-width: 480px) {
+
+    #article-content {
+        font-size: 0.9rem;
+        line-height: 1.5;
+    }
     .article-container h1 {
         font-size: 1.3rem;
     }
 
-    #article-content {
-        font-size: 0.9rem;
+    .article-container h6 {
+        font-size: 0.8rem;
+    }
+
+    #article-content p {
+        margin-bottom: 1rem;
     }
 }
 

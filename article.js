@@ -12,6 +12,7 @@ const loadArticle = async() =>{
             document.getElementById('article-date').textContent = article.date;
             document.getElementById('article-img').src = article.imageUrl;
             document.getElementById('article-content').innerHTML = article.content;
+            document.getElementById('article-description').innerHTML = article.description;
         }
         else{
             document.getElementById('article-content').textContent = 'Δεν βρέθηκε Άρθρο. ';

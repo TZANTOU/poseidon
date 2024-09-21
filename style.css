@@ -403,7 +403,6 @@ img {
     .matchday {
         flex-direction: column;
         padding: 10px;
-        border-radius: 5px;
         font-size: 14px;
         text-align: center;
     }
@@ -796,12 +795,8 @@ img {
     display: flex;
     justify-content: space-between;
     align-items: center;
-
-
-
     padding: 15px;
     border: 1px solid #eee;
-    border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     text-align: left;
 }
@@ -962,7 +957,6 @@ img {
     display: flex;
     justify-content: center;
     align-items: center;
-    border-radius: 4px;
 }
 
 .calendar-day.matchday.away .match-info {

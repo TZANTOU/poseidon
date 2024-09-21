@@ -22,14 +22,14 @@
      },
      {
         "id":"3",
-         "name": "Αλκιβιάδης Καζάςz",
+         "name": "Αλκιβιάδης Καζάς",
         "position": "LB/RB",
         "image": ""
      },
      {
         "id":"6",
          "name": "Χριστόφορος Κουτσοποδιώτης",
-        "position": "RB/CDM/CAM",
+        "position": "RB/CM",
         "image": ""
      },
      {
@@ -67,6 +67,60 @@
       "name": "Γιώργος Μπάρδης",
         "position": "LB",
         "image": "images/13.png"
+     },
+     {
+      "id":"2",  
+      "name": "Φάνης Παπασταύρου",
+        "position": "RB/CM",
+        "image": "images/2.png"
+     },
+     {
+      "id":"12",  
+      "name": "Γιάννης Μπάρδης",
+        "position": "CAM",
+        "image": "images/12.png"
+     },
+     {
+      "id":"14",  
+      "name": "Γιώργος Αντουλινάκης",
+        "position": "ST",
+        "image": "images/14.png"
+     },
+     {
+      "id":"15",  
+      "name": "Εφραίμ Κοτζαμάνης",
+        "position": "ST/RW/LW/CAM",
+        "image": "images/16.png"
+     },
+     {
+      "id":"16",  
+      "name": "Μαρικλέν Τοπάλλι",
+        "position": "LB",
+        "image": ""
+     },
+     {
+      "id":"17",  
+      "name": "Νου Γκιονάι",
+        "position": "RW",
+        "image": "images/18.png"
+     },
+     {
+      "id":"18",  
+      "name": "Νικόλας Χασκάι",
+        "position": "RW",
+        "image": "images/17.png"
+     },
+     {
+      "id":"19",  
+      "name": "Πέτρος Πρένγκα",
+        "position": "RB",
+        "image": "images/19.png"
+     },
+     {
+      "id":"20",  
+      "name": "Βαγγέλης Προσίλης",
+        "position": "LB/LW/CM",
+        "image": "images/20.png"
      }
      
 

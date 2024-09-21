@@ -394,6 +394,14 @@ img {
 .logo {
     width: 150px;
 }
+#football-field {
+    position: relative;
+    width: 100%;
+    height: 600px;
+    background-image: url('images\football_field.png'); /* Σιγουρέψου ότι έχεις την εικόνα του γηπέδου */
+    background-size: cover;
+    margin: 0 auto;
+}
 
 @media(max-width:576px) {
     .navbar .logo {
@@ -1170,6 +1178,39 @@ table tbody tr:nth-last-child(2) {
     height: auto;
     max-width: 200px;
     border-radius: 50%;
+}
+.player {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    background-color: white;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 60px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.player:hover {
+    transform: scale(1.2); /* Μεγαλώνει τον παίκτη όταν περάσει από πάνω το ποντίκι */
+}
+
+#same-position-players {
+    margin-top: 20px;
+    display: flex;
+    gap: 10px;
+}
+
+.hidden {
+    display: none;
+}
+
+#same-position-players img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    transition: transform 0.3s ease;
 }
 
 .player-name {

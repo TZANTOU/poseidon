@@ -103,49 +103,75 @@ let votes = {}; // Αντικείμενο για τις ψήφους των πα
 fetch('players.json')
     .then(response => response.json())
     .then(data => {
+        
+        document.querySelectorAll('.player').forEach(playerElement => {
+            playerElement.addEventListener('mouseenter', (event) => {
+                const playerId = event.target.getAttribute('data-player-id');
+                const currentPlayer = players.find(player => player.id == playerId);
+        
+                // Βρίσκει όλους τους παίκτες της ίδιας θέσης
+                const samePositionPlayers = players.filter(player => player.position === currentPlayer.position);
+        
+                // Καθαρίζει το container των παικτών της ίδιας θέσης
+                const samePositionContainer = document.getElementById('same-position-players');
+                samePositionContainer.innerHTML = '';
+                samePositionContainer.classList.remove('hidden');
+        
+                // Προσθέτει κάθε παίκτη στο container
+                samePositionPlayers.forEach(player => {
+                    const playerImg = document.createElement('img');
+                    playerImg.src = player.image;
+                    playerImg.alt = player.name;
+                    playerImg.title = player.name;
+        
+                    samePositionContainer.appendChild(playerImg);
+                });
+            });
+        
+            // Κρυφή η λίστα όταν δεν γίνεται hover
+            playerElement.addEventListener('mouseleave', () => {
+                const samePositionContainer = document.getElementById('same-position-players');
+                samePositionContainer.classList.add('hidden');
+            });
+        });        
         const players = data.players;
         console.log(players); 
+
+        const playersContainer = document.getElementById('players-container');
         // Δημιουργία HTML για κάθε παίκτη και προσθήκη τους στη σελίδα
+
+        if (!playersContainer) {
+            console.error('Players container not found');
+            return;
+        }
+
         if (Array.isArray(players)){
-            const playersContainer = document.getElementById('players-container');
-        const resultsList = document.getElementById('results-list');
-        
-        players.forEach(player => {
-            // Αρχικοποίηση των ψήφων για κάθε παίκτη
-            votes[player.id] = 0;
+            
+            playersContainer.innerHTML = '';
+
+
+            players.forEach(player => {
+            
 
             // Δημιουργία HTML για την κάρτα του παίκτη
             const playerCard = document.createElement('div');
             playerCard.classList.add('player-card');
-            playerCard.setAttribute('data-player-id', player.id);
+            
             playerCard.innerHTML = `
                 <img src="${player.image}" alt="${player.name}">
                 <div class="player-info">
                     <h3 class="player-name">${player.name}</h3>
                     <p class="player-position">${player.position}</p>
-                    <button class="vote-button">Vote</button>
                 </div>
             `;
 
             // Προσθήκη της κάρτας παίκτη στο container
             playersContainer.appendChild(playerCard);
 
-            // Προσθήκη της γραμμής των ψήφων στο results list
-            const resultItem = document.createElement('li');
-            resultItem.innerHTML = `${player.name}: <span id="player-${player.id}-votes">0</span> votes`;
-            resultsList.appendChild(resultItem);
-
-            // Event listener για το κουμπί ψηφοφορίας
-            playerCard.querySelector('.vote-button').addEventListener('click', function() {
-                // Αυξάνουμε την ψήφο του παίκτη
-                votes[player.id]++;
-                // Ενημερώνουμε την προβολή των ψήφων
-                document.getElementById(`player-${player.id}-votes`).innerText = votes[player.id];
-                // Μπορείς να αποθηκεύσεις τις ψήφους στο localStorage ή να τις στείλεις σε backend εδώ
-                sendVoteToServer(player.id);
+           
             });
-        });
-        }else{
+        }
+        else{
             console.error('Expected array but got:', players);
         }
         
@@ -175,3 +201,4 @@ fetch('players.json')
         document.getElementById(`player-${player.id}-votes`).innerText = votes[player.id];
         sendVoteToServer(player.id); // Αποστολή ψήφου στον server
     });
+

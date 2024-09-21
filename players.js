@@ -23,7 +23,7 @@ const playersData = {
         },
         {
             "name": "Χριστόφορος Κουτσοποδιώτηςsss",
-            "position": "RB/CDM/CAM",
+            "position": "RB/CDM/CAMm",
             "imageUrl": "https://es.pinterest.com/christopherkouts/"
         },
         {

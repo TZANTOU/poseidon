@@ -4,21 +4,21 @@
         "id": "1",
          "name": "Αργύρης Αλευράς",
         "position": "GK",
-        "image": "1.png"
+        "image": "images/1.png"
       },
       
       {
         "id":"5",
          "name": "Αποστόλης Οικονομόπουλος",
         "position": "CB",
-        "image": "5.png"
+        "image": "images/5.png"
      },
       {
         
          "id":"4",
          "name": "Παναγιώτης Σκαλτσάς",
         "position": "CB",
-        "image": "4.png"
+        "image": "images/4.png"
      },
      {
         "id":"3",
@@ -36,37 +36,37 @@
         "id":"7",
          "name": "Agustin Tresa",
         "position": "CDM/CAM",
-        "image": "7.png"
+        "image": "images/7.png"
      },
      {
         "id":"10",
          "name": "Χρήστο Κέλλι",
         "position": "ST/RW/LW/CAM",
-        "image": "10.png"
+        "image": "images/10.png"
      },
      {
       "id":"11",  
       "name": "Ανάργυρος Αποστόλου",
         "position": "RW",
-        "image": "11.png"
+        "image": "images/11.png"
      },
      {
         "id":"8",
          "name": "Ανάργυρος Λαζάρου",
         "position": "CB/CDM",
-        "image": "8.png"
+        "image": "images/8.png"
      },
      {
       "id":"9",  
       "name": "Νικόλας Λαζάρου",
         "position": "ST",
-        "image": "9.png"
+        "image": "images/9.png"
      },
      {
       "id":"13",  
       "name": "Γιώργος Μπάρδης",
         "position": "LB",
-        "image": "13.png"
+        "image": "images/13.png"
      }
      
 

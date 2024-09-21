@@ -22,7 +22,7 @@ const playersData = {
             "imageUrl": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhrg0gka0vtJMOabsbNg7sva3Wyc8nCxg58Z87YfhsMYnzporqJtmPt9ZpfHHrUF7vnMdHhmUO2U2efDbZKq8aqGxZfZBLrkWwArDh6oiMu-lrSjfhydnUrDGrFv6i-8LgBI4Dmi1TyRlI/s1600/1639034628435116-0.png"
         },
         {
-            "name": "Χριστόφορος Κουτσοποδιώτης",
+            "name": "Χριστόφορος Κουτσοποδιώτηςsss",
             "position": "RB/CDM/CAM",
             "imageUrl": "https://es.pinterest.com/christopherkouts/"
         },

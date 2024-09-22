@@ -402,7 +402,81 @@ img {
     background-size: cover;
     margin: 0 auto;
 }
+#completed-games {
+    background-color: #fff;
+    
+    margin: 20px auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+   
+    padding: 15px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 20px;
+}
+#completed-match {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    border-bottom: 1px solid #eee;
+}
 
+#completed-match:last-child {
+    border-bottom: none;
+}
+
+.completed-match .team-logo {
+    width: 100px;
+    transition: transform 0.3s ease-in-out;
+}
+
+#completed-match .vs-text {
+    font-size: 20px;
+    font-weight: bold;
+    margin: 0 10px;
+}
+
+#completed-match .match-info {
+    text-align: left;
+    flex-grow: 1;
+    margin-left: 10px;
+}
+
+#completed-match .match-info p {
+    margin: 5px 0;
+}
+
+/* Hover effect για τα λογότυπα */
+.team-logo:hover {
+    transform: scale(1.1);
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 600px) {
+    #next-match, #completed-games {
+        max-width: 100%;
+        padding: 15px;
+    }
+
+    .completed-match {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .completed-match .team-logo {
+        margin-bottom: 10px;
+    }
+}
+
+#results-container{
+    /* Άλλαξέ το ώστε να κατεβαίνει κάτω από την βαθμολογία*/
+    position: absolute;
+    top: 110%;
+}
 @media(max-width:576px) {
     .navbar .logo {
         width: 80px;
@@ -493,8 +567,30 @@ img {
         /* Μικρότερη απόσταση στα στοιχεία σε κινητές συσκευές */
     }
 }
-
+@media (min-width: 769px){
+    
+}
 @media (max-width: 768px) {
+    
+    #completed-games .vs-text {
+        font-size: 24px;
+        font-weight: bold;
+        margin: 0 20px;
+    }
+
+    #results-container{
+        top: 300%;
+        width: 100%;
+        padding: 0px;
+        margin-left: 0px;
+        border-radius: 0px;
+    }
+    #completed-games p{
+        display: block;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+
     .news-header h1 {
         padding-left: 15px;
     }

@@ -5,10 +5,10 @@ const loadNextMatch = async () => {
 
         if (schedule && Array.isArray(schedule.games)){
         // Παίρνουμε το σημερινό timestamp
-        const now = new Date().getTime();
+        const now = new Date();
 
         // Βρίσκουμε τον επόμενο αγώνα (τον πρώτο αγώνα μετά την τρέχουσα ημερομηνία)
-        const nextMatch = schedule.games.find(game => new Date(game.date).getTime() > now);
+        const nextMatch = schedule.games.find(game => {const matchDate = new Date(game.date); return matchDate.getTime() >= now.getTime();});
 
         // Αν βρεθεί αγώνας
         if (nextMatch) {
@@ -36,7 +36,36 @@ const loadNextMatch = async () => {
                     <p>${nextMatch.matchday}</p>
                     <p>Ημερομηνία: ${nextMatch.date}</p>
                 </div>
+                <div id="countdown-timer" class="countdown-timer">
+                        Ξεκινάει σε: <span id="time-left">--:--:--</span>
+                </div>
             `;
+
+            // Λήψη ημερομηνίας αγώνα
+            const matchDate = new Date(nextMatch.date).getTime();
+
+            // Ενημέρωση του χρονόμετρου κάθε δευτερόλεπτο
+            const updateCountdown = () => {
+                const now = new Date().getTime();
+                const timeLeft = matchDate - now;
+
+                if (timeLeft > 0) {
+                    // Υπολογισμός των ημερών, ωρών, λεπτών και δευτερολέπτων
+                    const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+                    const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                    const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+                    const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+                    // Ενημέρωση του HTML με τον υπολειπόμενο χρόνο
+                    document.getElementById('time-left').textContent =
+                        `${days}d ${hours}h ${minutes}m ${seconds}s`;
+                } else {
+                    // Αν ο αγώνας έχει ξεκινήσει, δείξε ένα μήνυμα
+                    document.getElementById('countdown-timer').innerHTML = 'Ο αγώνας ξεκίνησε!';
+                }
+            };
+            updateCountdown(); // Πρώτη άμεση ενημέρωση
+            setInterval(updateCountdown, 1000); // Ενημέρωση κάθε δευτερόλεπτο
         } else {
             document.getElementById('next-match').textContent = 'Δεν υπάρχουν προγραμματισμένοι αγώνες';
         }

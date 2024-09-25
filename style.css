@@ -18,6 +18,22 @@ main {
     padding-top: 250px;
     margin-top: 0px;
 }
+@media(max-width:768px){
+    .article-header{
+        width: 100%  !important;
+        top: 200px !important;
+    }
+    #article-img{
+        width: 95% !important;
+        margin-left: 0 !important;
+        margin-top: 400px;
+    }
+    .article-header h6,h1,p{
+        width: 100% !important;
+    }
+    
+}
+
 
 a {
     text-decoration: none;
@@ -206,7 +222,7 @@ img {
     text-align: center;
     font-size: 24px;
     font-weight: bold;
-    z-index: 10;
+    z-index: 9;
 }
 
 .carousel-item {
@@ -476,7 +492,7 @@ img {
 #results-container{
     /* Άλλαξέ το ώστε να κατεβαίνει κάτω από την βαθμολογία*/
     position: absolute;
-    top: 100%;
+    top: 130%;
     left: 35%;
 }
 @media(max-width:576px) {
@@ -556,6 +572,7 @@ img {
     }
 }
 
+
 @media (max-width: 576px) {
     .matchday-content {
         flex-direction: column;
@@ -574,6 +591,7 @@ img {
 }
 @media (max-width: 768px) {
     
+    
     #completed-games .vs-text {
         font-size: 24px;
         font-weight: bold;
@@ -586,20 +604,24 @@ img {
         padding: 0px;
         margin-left: 0px;
         border-radius: 0px;
-        left:0%;    
+        left:0%;
+        
     }
     #completed-games p{
         display: block;
         margin-top: 10px;
         margin-bottom: 10px;
     }
-
+    #completed-games{
+        padding: 15px;
+        text-align: center;
+    }
     .news-header h1 {
         padding-left: 15px;
     }
     .article-container{
         padding: 0;
-        margin: 20px auto;
+        justify-content: center;
     }
     .article-header h1 {
         font-size: 1.5rem;
@@ -617,12 +639,7 @@ img {
         flex-direction: column;
         /* Σε μικρές οθόνες, οι στήλες θα στοιχίζονται κάθετα */
     }
-    .article-header{
-        width: 100%;
-    }
-    #article-img{
-        width: 100%;
-    }
+    
     .next-match img {
         width: 50px;
         height: 50px;
@@ -1257,25 +1274,6 @@ table tbody tr:nth-last-child(2) {
     font-size: 1.6rem;
     margin-bottom: 20px;
 
-}
-
-@media only screen and (max-width: 480px) {
-
-    #article-content {
-        font-size: 0.9rem;
-        line-height: 1.5;
-    }
-    .article-container h1 {
-        font-size: 1.3rem;
-    }
-
-    .article-container h6 {
-        font-size: 0.8rem;
-    }
-
-    #article-content p {
-        margin-bottom: 1rem;
-    }
 }
 
 #article-content a {

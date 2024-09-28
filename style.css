@@ -638,7 +638,9 @@ img {
     
 }
 @media (max-width: 768px) {
-    
+    iframe{
+        width: 100%;
+    }
     
     #completed-games .vs-text {
         font-size: 24px;

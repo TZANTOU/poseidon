@@ -51,24 +51,45 @@
             </div>
         </div>    
     </nav>
-    
-<main>
+    <main>
+        <h1>Instagram Comment Winner Picker</h1>
+    <textarea id="comments" rows="10" cols="50" placeholder="Εισήγαγε τα σχόλια εδώ (ένα ανά γραμμή)"></textarea><br>
+    <button onclick="pickWinner()">Επέλεξε Νικητή</button>
+    <h2 id="winner">Ο νικητής θα εμφανιστεί εδώ</h2>
+
+    <script>
+        function pickWinner() {
+            // Παίρνουμε τα σχόλια και τα χωρίζουμε ανά γραμμή
+            let comments = document.getElementById("comments").value.trim().split("\n");
+            
+            // Αφαιρούμε τυχόν κενές γραμμές
+            comments = comments.filter(comment => comment.trim() !== "");
+            
+            // Επιλέγουμε τυχαία έναν αριθμό
+            let randomIndex = Math.floor(Math.random() * comments.length);
+            
+            // Εμφανίζουμε το τυχερό σχόλιο
+            document.getElementById("winner").innerHTML = `Ο νικητής είναι: ${comments[randomIndex]}`;
+        }
+    </script>
+    </main>
+<!-- <main>
     <div class="vote-container">
         <h2>Vote for MVP</h2>
         <div id="players-container" class="players-grid">
-            <!-- Οι παίκτες θα φορτωθούν δυναμικά εδώ -->
+             Οι παίκτες θα φορτωθούν δυναμικά εδώ 
         </div>
     
-        <!-- Εμφάνιση των αποτελεσμάτων -->
+         Εμφάνιση των αποτελεσμάτων 
         <div class="results">
             <h3>Current MVP Voting Results</h3>
             <ul id="results-list">
-                <!-- Οι ψήφοι θα εμφανίζονται εδώ -->
+                 Οι ψήφοι θα εμφανίζονται εδώ 
             </ul>
         </div>
     </div>
 </main>
-
+-->
 
 
 </body>

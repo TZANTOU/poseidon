@@ -119,8 +119,12 @@ const loadScheduleFromJSON = async () => {
         
         const template = document.getElementById('template-matchday');
         const scheduleList = document.getElementById('schedule-list');
+        scheduleList.innerHTML = '';
         
         data.games.forEach((game) => {
+            if (game.result) {
+                return;
+            }
             const clone = template.content.cloneNode(true);
             clone.querySelector('.matchday-title').textContent = game.matchday;
             clone.querySelector('.match-date').textContent = `Ημερομηνία: ${game.date}`;

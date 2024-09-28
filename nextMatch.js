@@ -10,10 +10,12 @@ const loadNextMatch = async () => {
             const completedGames = [];
             schedule.games.forEach(game => {
                 const gameDate = new Date(game.date);
-                if (gameDate.getTime() > now.getTime()) {
-                    futureGames.push(game);
-                } else {
+                // Αν υπάρχει αποτέλεσμα (result), θεωρείται ολοκληρωμένο
+                if (game.result) {
                     completedGames.push(game);
+                } else if (gameDate.getTime() > now.getTime()) {
+                    // Αν είναι μελλοντικό παιχνίδι, το προσθέτουμε στα μελλοντικά
+                    futureGames.push(game);
                 }
             });
 

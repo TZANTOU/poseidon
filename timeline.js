@@ -125,7 +125,7 @@ document.addEventListener('DOMContentLoaded', function () {
         ]
     };
 
-    const initialLoadCount = 10;
+    const initialLoadCount = 3;
 
     function loadPhotos(category, container, count) {
         if (albums[category] && albums[category].length > 0) {

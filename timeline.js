@@ -100,9 +100,14 @@ document.addEventListener('DOMContentLoaded', function () {
 
         ],
         "1971-1984": [
+            {src:'1972.jpg', caption:'1972, Παλαιό Γήπεδο Κοιλάδας'},
+            {src:'1976.jpg', caption:'1976'},
             { src: '1979.jpg', caption: '1979' },
+            {src:'1979-argos.jpg', caption:'1979, Γήπεδο Παναργειακού'},
+            {src:'1980.jpg', caption:'1980, Γήπεδο Ερμιόνης'},
             {src:'1981.jpg', caption:'1981'},
             {src:'1982-1-1--portoxeli.jpg', caption: '1982 Πορτοχελιακός - Ποσειδώνας Διδύμων 1-1'},
+            { src: '1982.jpg', caption: '1982' },
             {src:'1984.jpg', caption:'1984 Αργέας - Ποσειδώνας Διδύμων 1-4, Γήπεδο Παναργειακού'}
         ],
         "1985-1997": [
@@ -111,7 +116,8 @@ document.addEventListener('DOMContentLoaded', function () {
             { src: '1986-kefalonia.jpg', caption: '1986 γήπεδο Κεφαλονιάς, Δ΄ Εθνική' }
         ],
         "1998-now": [
-            { src: '2000.jpg', caption: 'Η νέα εποχή της ομάδας' }
+            { src: '2017.jpg', caption: '2017' },
+            {src:'458108354_555380303533873_7713678727587974578_n.jpg', caption:'2024, Φιλικό Προετοιμασίας στον Γαλατά'}
         ]
     };
 

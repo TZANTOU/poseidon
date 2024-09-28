@@ -10,7 +10,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,700;1,800&display=swap" rel="stylesheet">
     <link rel="shortcut icon" href="images/logo.ico">
-    <script src="script.js" defer></script>
 </head>
 <body>
     <nav class="navbar">
@@ -99,7 +98,38 @@
         
     </section>
     
+    <!-- Νέο Άλμπουμ Φωτογραφιών -->
+    <section class="photo-album">
+        <h2>Φωτογραφικό Άλμπουμ</h2>
 
+        <!-- Κατηγορία 1956-1970 -->
+        <div class="album-category" id="album-1956-1970">
+            <h3>1956-1970</h3>
+            <div class="photos" id="photos-1956-1970"></div>
+            <button class="load-more" data-category="1956-1970">Φόρτωση Περισσότερων</button>
+        </div>
+
+        <!-- Κατηγορία 1971-1984 -->
+        <div class="album-category" id="album-1971-1984">
+            <h3>1971-1984</h3>
+            <div class="photos" id="photos-1971-1984"></div>
+            <button class="load-more" data-category="1971-1984">Φόρτωση Περισσότερων</button>
+        </div>
+
+        <!-- Κατηγορία 1985-1997 -->
+        <div class="album-category" id="album-1985-1997">
+            <h3>1985-1997</h3>
+            <div class="photos" id="photos-1985-1997"></div>
+            <button class="load-more" data-category="1985-1997">Φόρτωση Περισσότερων</button>
+        </div>
+
+        <!-- Κατηγορία 1998-σήμερα -->
+        <div class="album-category" id="album-1998-now">
+            <h3>1998-Σήμερα</h3>
+            <div class="photos" id="photos-1998-now"></div>
+            <button class="load-more" data-category="1998-now">Φόρτωση Περισσότερων</button>
+        </div>
+    </section>
 </main>
 <script src="timeline.js"></script>
 </body>

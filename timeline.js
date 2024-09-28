@@ -6,11 +6,11 @@ const events = document.querySelectorAll('.event');
 
 // Αντιστοιχίες μεταξύ χρονιάς και φωτογραφίας
 const photos = {
-    "1956": "images/1956.jpg",
+    "1956": "images/1954.jpg",
     "1970": "images/1970.jpg",
     "1979": "images/1979.jpg",
     "1985": "images/1985.jpg",
-    "1986": "images/1986.jpg",
+    "1986": "images/1986-kefalonia.jpg",
     "1994": "images/1994.jpg",
     "1995": "images/1995.jpg",
     "1997": "images/1997.jpg",
@@ -19,7 +19,7 @@ const photos = {
 
 // Προσθήκη event listeners σε κάθε χρονιά για την εμφάνιση της φωτογραφίας
 events.forEach(event => {
-    
+
     const year = event.getAttribute('data-year');
     const photoSrc = photos[year];
 
@@ -30,7 +30,7 @@ events.forEach(event => {
         photoElement.classList.add('photo');
         event.appendChild(photoElement);
     }
-    
+
 });
 function enableDesktopHover() {
     events.forEach(event => {
@@ -89,4 +89,87 @@ window.addEventListener('resize', () => {
     });
 
     initializeInteraction();
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+    const albums = {
+        "1956-1970": [
+            { src: '1954.jpg', caption: 'Ιδρυτική Φωτογραφία 1956' },
+            { src: '1959.jpg', caption: '1959 Παλαιό Γήπεδο Διδύμων' },
+            { src: '1970.jpg', caption: '1970 Γήπεδο Ερμιόνης' },
+
+        ],
+        "1971-1984": [
+            { src: '1979.jpg', caption: '1979' },
+            {src:'1981.jpg', caption:'1981'},
+            {src:'1982-1-1--portoxeli.jpg', caption: '1982 Πορτοχελιακός - Ποσειδώνας Διδύμων 1-1'},
+            {src:'1984.jpg', caption:'1984 Αργέας - Ποσειδώνας Διδύμων 1-4, Γήπεδο Παναργειακού'}
+        ],
+        "1985-1997": [
+            { src: '1985-kupello-4-0--drepano.jpg', caption: '1985 Ποσειδώνας Διδύμων - Αστέρας Δρεπανιακός 4-0 Κύπελλο' },
+            { src: '1985-2-2--panargeiakos.jpg', caption: '1985 Παναργειακός - Ποσειδώνας Διδύμων 2-2, Δ΄ Εθνική' },
+            { src: '1986-kefalonia.jpg', caption: '1986 γήπεδο Κεφαλονιάς, Δ΄ Εθνική' }
+        ],
+        "1998-now": [
+            { src: '2000.jpg', caption: 'Η νέα εποχή της ομάδας' }
+        ]
+    };
+
+    const initialLoadCount = 10;
+
+    function loadPhotos(category, container, count) {
+        if (albums[category] && albums[category].length > 0) {
+            const photos = albums[category].slice(0, count);
+            container.innerHTML = ''; // Καθαρίζει το container
+
+            photos.forEach(photoObj => {
+                const photoContainer = document.createElement('div');
+                photoContainer.classList.add('photo-container'); // Προσθέτουμε ένα div για κάθε εικόνα και λεζάντα
+
+                const img = document.createElement('img');
+                img.src = `images/${category}/${photoObj.src}`;
+                img.alt = `${photoObj.caption}`;
+                
+                // Προσθέτουμε ένα event για να επιβεβαιώσουμε αν η εικόνα φορτώνει σωστά
+                img.onerror = function() {
+                    console.error(`Η εικόνα ${img.src} δεν φορτώθηκε σωστά.`);
+                };
+
+                // Δημιουργούμε ένα στοιχείο για τη λεζάντα
+                const caption = document.createElement('div');
+                caption.classList.add('caption');
+                caption.textContent = photoObj.caption;
+
+                // Προσθέτουμε την εικόνα και τη λεζάντα στο photoContainer
+                photoContainer.appendChild(img);
+                photoContainer.appendChild(caption);
+
+                // Προσθέτουμε το photoContainer στο κύριο container
+                container.appendChild(photoContainer);
+            });
+        } else {
+            console.error(`Δεν βρέθηκαν φωτογραφίες για την κατηγορία: ${category}`);
+        }
+    }
+
+    // Αρχική φόρτωση φωτογραφιών
+    document.querySelectorAll('.album-category').forEach(categoryDiv => {
+        const category = categoryDiv.id.replace('album-', ''); // Παίρνουμε την κατηγορία
+        const container = categoryDiv.querySelector('.photos');
+        loadPhotos(category, container, initialLoadCount);
+    });
+
+    // Event listener για το κουμπί "Φόρτωση Περισσότερων"
+    document.querySelectorAll('.load-more').forEach(button => {
+        button.addEventListener('click', function () {
+            const category = this.dataset.category;
+            const container = document.getElementById(`photos-${category}`);
+            const currentPhotoCount = container.childElementCount;
+            loadPhotos(category, container, currentPhotoCount + 10);
+
+            if (currentPhotoCount + 10 >= albums[category].length) {
+                this.style.display = 'none';
+            }
+        });
+    });
 });

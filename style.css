@@ -564,7 +564,55 @@ img {
     width: 100%;
     margin: 10px;
 }
+.photo-album {
+    padding: 20px;
+    background-color: #f9f9f9;
+}
 
+.album-category {
+    margin-bottom: 40px;
+}
+
+.album-category h3 {
+    margin-bottom: 10px;
+}
+
+.photos {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.photos img {
+    width: 400px;
+    height: auto;
+    border-radius: 8px;
+    transition: transform 0.2s;
+}
+
+.photos img:hover {
+    transform: scale(1.1);
+}
+.caption {
+    margin-top: 5px;
+    font-size: 14px;
+    color: #333;
+}
+.load-more {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.load-more:hover {
+    background-color: #0056b3;
+}
 @media (max-width: 992px) {
     .card {
         flex: 0 1 calc(50% - 20px);

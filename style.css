@@ -446,7 +446,7 @@ img {
     border-bottom: none;
 }
 
-.completed-match .team-logo {
+.team-logo {
     width: 70px;
     height: 70px;
     transition: transform 0.3s ease-in-out;

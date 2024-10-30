@@ -99,7 +99,7 @@ const displayNextMatch = (nextMatch) => {
             }
             
 }
-const displayCompletedGames = (completedGames) => {
+const displayCompletedGames = (completedGames,page = 1, gamesPerPage = 3) => {
     const completedGamesContainer = document.getElementById('completed-games');
     completedGamesContainer.innerHTML = ''; // Καθαρισμός προηγούμενου περιεχομένου
 
@@ -108,7 +108,17 @@ const displayCompletedGames = (completedGames) => {
         return;
     }
 
-    completedGames.forEach(game => {
+    const reversedGames = [...completedGames].reverse();
+    // Υπολογισμός του συνολικού αριθμού σελίδων
+    const totalPages = Math.ceil(reversedGames.length / gamesPerPage);
+
+    // Προσδιορισμός του εύρους αγώνων για εμφάνιση
+    const start = (page - 1) * gamesPerPage;
+    const end = start + gamesPerPage;
+    const gamesToShow = reversedGames.slice(start, end);
+
+
+    gamesToShow.forEach(game => {
         let homeTeam = 'ΠΟΣΕΙΔΩΝ';
         let awayTeam = game.opponent;
         let homeLogo = 'images/logo.png';
@@ -136,6 +146,19 @@ const displayCompletedGames = (completedGames) => {
 
         completedGamesContainer.innerHTML += gameHTML;
     });
+    const paginationContainer = document.getElementById('pagination');
+    paginationContainer.innerHTML = ''; // Καθαρισμός προηγούμενων κουμπιών
+
+    for (let i = 1; i <= totalPages; i++) {
+        const pageButton = document.createElement('button');
+        pageButton.textContent = i;
+        pageButton.className = 'page-btn';
+        if (i === page) {
+            pageButton.classList.add('active'); // Ενεργό κουμπί για την τρέχουσα σελίδα
+        }
+        pageButton.addEventListener('click', () => displayCompletedGames(completedGames, i, gamesPerPage));
+        paginationContainer.appendChild(pageButton);
+    }
 };
 // Φορτώνουμε τον επόμενο αγώνα όταν φορτωθεί το DOM
 document.addEventListener('DOMContentLoaded', loadNextMatch);

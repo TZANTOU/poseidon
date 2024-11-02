@@ -11,6 +11,47 @@
     <link rel="shortcut icon" href="images/logo.ico">
     <script src="script.js" defer></script>
     <script src="players.js"></script>
+    <style>
+        .wheel-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+            position: relative;
+        }
+        canvas {
+            border: 3px solid #000;
+            border-radius: 50%;
+            width: 1000px;
+            height: 1000px;
+        }
+        #winner {
+            text-align: center;
+            font-size: 1.5em;
+            margin-top: 20px;
+        }
+        .spin-btn,.load-btn {
+            display: block;
+            margin: 10px auto;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 1.2em;
+        }
+        .arrow {
+            width: 0;
+            height: 0;
+            border-left: 20px solid transparent;
+            border-top: 20px solid transparent;
+            border-bottom: 20px solid transparent;
+            border-right: 40px solid red;
+            position: absolute;
+            top: 500px;
+            left: 68.2%;
+            transform: translateX(-50%);
+        }
+    </style>
 </head>
 <body>
     <nav class="navbar">
@@ -54,23 +95,139 @@
     <main>
         <h1>Instagram Comment Winner Picker</h1>
     <textarea id="comments" rows="10" cols="50" placeholder="Εισήγαγε τα σχόλια εδώ (ένα ανά γραμμή)"></textarea><br>
-    <button onclick="pickWinner()">Επέλεξε Νικητή</button>
+    <button class="load-btn" onclick="loadComments()">Φόρτωμα Σχολίων</button> <!-- Νέο κουμπί -->
+    <button class="spin-btn" onclick="spinWheel()">Επέλεξε Νικητή</button>
+    <div class="wheel-container">
+        <canvas id="wheel" width="1000" height="1000"></canvas>
+        <div class="arrow"></div> <!-- Δείκτης (βέλος) -->
+    </div>
     <h2 id="winner">Ο νικητής θα εμφανιστεί εδώ</h2>
-
+    
     <script>
-        function pickWinner() {
-            // Παίρνουμε τα σχόλια και τα χωρίζουμε ανά γραμμή
-            let comments = document.getElementById("comments").value.trim().split("\n");
-            
-            // Αφαιρούμε τυχόν κενές γραμμές
-            comments = comments.filter(comment => comment.trim() !== "");
-            
-            // Επιλέγουμε τυχαία έναν αριθμό
-            let randomIndex = Math.floor(Math.random() * comments.length);
-            
-            // Εμφανίζουμε το τυχερό σχόλιο
-            document.getElementById("winner").innerHTML = `Ο νικητής είναι: ${comments[randomIndex]}`;
-        }
+        const canvas = document.getElementById("wheel");
+            const ctx = canvas.getContext("2d");
+            let lastRotationAngle = 0;
+
+            function groupComments(commentsArray) {
+                const grouped = {};
+                let totalEntries = 0;
+
+                commentsArray.forEach(comment => {
+                    const name = comment.split(" ")[0]; // Υποθέτουμε ότι το όνομα είναι η πρώτη λέξη
+                    if (grouped[name]) {
+                        grouped[name].count++;
+                    } else {
+                        grouped[name] = { count: 1 };
+                    }
+                    totalEntries++;
+                });
+
+                return { grouped, totalEntries };
+            }
+
+            function shuffle(array) {
+                for (let i = array.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [array[i], array[j]] = [array[j], array[i]];
+                }
+            }
+
+            function drawWheel(groupedComments, totalEntries) {
+                const radius = canvas.width / 2;
+                let currentAngle = 0;
+
+                Object.keys(groupedComments).forEach((name, i) => {
+                    const numberOfComments = groupedComments[name].count;
+
+                    // Υπολογισμός του μεγέθους του τμήματος με βάση τις συμμετοχές
+                    const sectionAngle = (numberOfComments / totalEntries) * (2 * Math.PI);
+                    ctx.fillStyle = i % 2 === 0 ? "#00BFFF" : "#FF6666";
+
+                    ctx.beginPath();
+                    ctx.moveTo(radius, radius);
+                    ctx.arc(radius, radius, radius, currentAngle, currentAngle + sectionAngle);
+                    ctx.fill();
+                    ctx.stroke();
+
+                    ctx.save();
+                    ctx.translate(radius, radius);
+                    ctx.rotate(currentAngle + sectionAngle / 2);
+                    ctx.fillStyle = "#000";
+                    ctx.font = "16px Fira Sans";
+                    ctx.textAlign = "center";
+                    ctx.fillText(name, radius - 70, 0);
+                    ctx.restore();
+
+                    currentAngle += sectionAngle;
+                });
+            }
+
+            function updateWheel() {
+                const rawComments = document.getElementById("comments").value.trim().split("\n").filter(c => c.trim() !== "");
+                const { grouped: groupedComments, totalEntries } = groupComments(rawComments);
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                drawWheel(groupedComments, totalEntries);
+            }
+
+            function loadComments() {
+                const rawComments = document.getElementById("comments").value.trim().split("\n").filter(c => c.trim() !== "");
+                shuffle(rawComments);
+                document.getElementById("comments").value = rawComments.join("\n");
+                updateWheel();
+            }
+
+            function spinWheel() {
+                const rawComments = document.getElementById("comments").value.trim().split("\n").filter(c => c.trim() !== "");
+
+                if (rawComments.length === 0) {
+                    alert("Πρέπει να εισάγετε σχόλια!");
+                    return;
+                }
+
+                const { grouped: groupedComments, totalEntries } = groupComments(rawComments);
+                let rotationAngle = lastRotationAngle;
+                drawWheel(groupedComments, totalEntries);
+
+                let spinDuration = Math.random() * 3000 + 5000; 
+                let spinSpeed = 0.15;
+
+                const spinAnimation = setInterval(() => {
+                    rotationAngle += spinSpeed;
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+                    ctx.save();
+                    ctx.translate(canvas.width / 2, canvas.height / 2);
+                    ctx.rotate(rotationAngle);
+                    ctx.translate(-canvas.width / 2, -canvas.height / 2);
+                    drawWheel(groupedComments, totalEntries);
+                    ctx.restore();
+
+                    if (spinSpeed > 0.01) {
+                        spinSpeed *= 0.99; 
+                    }
+                }, 20);
+
+                setTimeout(() => {
+                    clearInterval(spinAnimation);
+                    lastRotationAngle = rotationAngle % (2 * Math.PI);
+
+                    const winningAngle = (2 * Math.PI - (rotationAngle % (2 * Math.PI))) % (2 * Math.PI);
+                    let accumulatedAngle = 0;
+                    let winner = null;
+
+                    Object.keys(groupedComments).forEach(name => {
+                        const numberOfComments = groupedComments[name].count;
+                        const sectionAngle = (numberOfComments / totalEntries) * (2 * Math.PI);
+
+                        if (winningAngle >= accumulatedAngle && winningAngle < accumulatedAngle + sectionAngle) {
+                            winner = name;
+                        }
+
+                        accumulatedAngle += sectionAngle;
+                    });
+
+                    document.getElementById("winner").textContent = `Ο νικητής είναι: ${winner}`;
+                }, spinDuration);
+            }
     </script>
     </main>
 <!-- <main>

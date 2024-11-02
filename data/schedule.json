@@ -21,28 +21,32 @@
             "opponent": "ΗΡΑΚΛΗΣ ΚΑΡΥΑΣ",
             "date": "2024-10-05",
             "home_away": "Εκτός",
-            "logo":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQINsPvYKk2neBye3JnxL5u4fxXAm1HWy4i1A&s"
+            "logo":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQINsPvYKk2neBye3JnxL5u4fxXAm1HWy4i1A&s",
+            "result":"3-3"
         },
         {
             "matchday": "3η Αγωνιστική",
             "opponent": "ΑΤΡΟΜΗΤΟΣ ΠΑΝΑΡΙΤΙΟΥ ΝΑΥΠΛΙΟΥ",
             "date": "2024-10-13",
             "home_away": "Εκτός",
-            "logo":"https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjXO5r0Ba9uY1T1GBlT4bRT8BRXSGTroxseYkPN4RRlL8apUAVt8h6WOBIUhl0Kh2lupLUF8WsfRV-_0efo-G_bq2JLp156EhX0BUXiJTtHRtI7NJLp7YfLkI5PD5DirHlI2LBVOmTF40lcOwF8fDmdLDFIEMDRVasJR8hkHnXvv4Fy9v2A-8bxjskxew/s1024/301992128_607096677629452_9124927007010457058_n.jpg"
+            "logo":"https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjXO5r0Ba9uY1T1GBlT4bRT8BRXSGTroxseYkPN4RRlL8apUAVt8h6WOBIUhl0Kh2lupLUF8WsfRV-_0efo-G_bq2JLp156EhX0BUXiJTtHRtI7NJLp7YfLkI5PD5DirHlI2LBVOmTF40lcOwF8fDmdLDFIEMDRVasJR8hkHnXvv4Fy9v2A-8bxjskxew/s1024/301992128_607096677629452_9124927007010457058_n.jpg",
+            "result":"0-0"
         },
         {
             "matchday": "4η Αγωνιστική",
             "opponent": "ΠΑΝΑΣΙΝΑΪΚΟΣ",
             "date": "2024-10-20",
             "home_away": "Εντός",
-            "logo":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ0l-rGLUj7CzFs3l09fv2hpi2JlhBUYOVFDg&s"
+            "logo":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ0l-rGLUj7CzFs3l09fv2hpi2JlhBUYOVFDg&s",
+            "result":"2-2"
         },
         {
             "matchday": "5η Αγωνιστική",
             "opponent": "ΑΡΓΟΝΑΥΤΗΣ",
             "date": "2024-10-27",
             "home_away": "Εκτός",
-            "logo":"https://upload.wikimedia.org/wikipedia/el/thumb/c/c4/A.O._Argonaftis_Neas_Kiou_updated_logo.jpg/170px-A.O._Argonaftis_Neas_Kiou_updated_logo.jpg"
+            "logo":"https://upload.wikimedia.org/wikipedia/el/thumb/c/c4/A.O._Argonaftis_Neas_Kiou_updated_logo.jpg/170px-A.O._Argonaftis_Neas_Kiou_updated_logo.jpg",
+            "result":"0-2"
         },
         {
             "matchday": "6η Αγωνιστική",

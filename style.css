@@ -421,39 +421,43 @@ img {
 #completed-games {
     background-color: #fff;
     
-    margin: 20px auto;
+    margin: 0 auto;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     max-width: 600px;
    
     padding: 15px;
     text-align: center;
-    display: flex;
+
+    gap: 20px;
+    padding: 25px;
     justify-content: center;
     align-items: center;
-    margin-left: 20px;
+    
 }
 .completed-match {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 15px;
-    border-bottom: 1px solid #eee;
 }
 
 .completed-match:last-child {
     border-bottom: none;
 }
 
-.completed-match .team-logo {
-    width: 100px;
+.team-logo {
+    width: 70px;
+    height: 70px;
     transition: transform 0.3s ease-in-out;
+    object-fit: cover;
 }
 
 .completed-match .vs-text {
-    font-size: 20px;
+    font-size: 1.2em;
     font-weight: bold;
-    margin: 0 10px;
+    color: #333;
+    margin: 0 15px;
 }
 
 .completed-match .match-info {
@@ -464,11 +468,19 @@ img {
 
 .completed-match .match-info p {
     margin: 5px 0;
+    font-size: 0.9em;
+    color: #555;
 }
 
 /* Hover effect για τα λογότυπα */
 .team-logo:hover {
     transform: scale(1.1);
+}
+.completed-match .match-info p:last-child {
+    font-size: 1.4em; /* Μεγαλύτερη γραμματοσειρά για το αποτέλεσμα */
+    font-weight: bold;
+    margin-top: 10px;
+    color: #333;
 }
 
 /* Mobile Responsiveness */
@@ -663,8 +675,14 @@ img {
         margin-bottom: 10px;
     }
     #completed-games{
-        padding: 15px;
+        display:flex;
+        flex-direction: column;
+        gap: 15px;
+        padding: 20px;
         text-align: center;
+        background-color: #f7f7f7;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     }
     .news-header h1 {
         padding-left: 15px;

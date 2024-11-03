@@ -116,16 +116,30 @@ const loadScheduleFromJSON = async () => {
     try {
         const response = await fetch('data/schedule.json');
         const data = await response.json();
+        return data.games;
         
-        const template = document.getElementById('template-matchday');
-        const scheduleList = document.getElementById('schedule-list');
+    } catch (error) {
+        console.error("Error loading schedule:", error);
+        return[];
+    }
+    
+};
+
+
+document.addEventListener('DOMContentLoaded', async() => {
+    const scheduleList = document.getElementById('schedule-list');
+    const template = document.getElementById('template-matchday');
+    
+    const games = await loadScheduleFromJSON();
+
+    // Φόρτωση προγράμματος 
+    const loadProgram = () => {
         scheduleList.innerHTML = '';
-        
-        data.games.forEach((game) => {
+        games.forEach(game => {
             if (game.result) {
                 return;
             }
-            const clone = template.content.cloneNode(true);
+            const clone =template.content.cloneNode(true);
             clone.querySelector('.matchday-title').textContent = game.matchday;
             clone.querySelector('.match-date').textContent = `Ημερομηνία: ${game.date}`;
             
@@ -141,17 +155,8 @@ const loadScheduleFromJSON = async () => {
             }
             scheduleList.appendChild(clone);
         });
-        
-    } catch (error) {
-        console.error("Error loading schedule:", error);
-    }
-    
-};
-
-
-document.addEventListener('DOMContentLoaded', () => {
-    loadScheduleFromJSON();
-});
+        loadProgram();
+}});
 
 const calculateDaysUntil = (dateString) => {
     const today = new Date();
@@ -162,94 +167,11 @@ const calculateDaysUntil = (dateString) => {
 };
 
 
-const generateCalendar = (year, month, games) => {
-    const monthYearEl  = document.querySelector('month-year');
-    const calendarBody = document.querySelector('calendar-body');
-
-    monthYearEl.textContent=`${new Date(year, month).toLocaleString('default', { month: 'long' })} ${year}`;
-    calendarBody.innerHTML = '';
-    // Δημιουργία ημερολογίου
-    const firstDay = new Date(year, month, 1).getDay();
-    const lastDay = new Date(year, month + 1, 0).getDate();
-    
-
-    // Εισαγωγή των ημερών του μήνα
-    for (let i = 0; i < firstDay; i++) {
-        calendarBody.innerHTML += '<div class="calendar-day empty"></div>'; // Κενά κελιά για τα προηγούμενα ημέρες
-    }
-
-    for (let day = 1; day <= lastDay; day++) {
-        let className = 'calendar-day';
-        let matchInfo = '';
-
-        const game = games.find(game => {
-            const gameDate = new Date(game.date);
-            return gameDate.getDate() === day && gameDate.getMonth() === month && gameDate.getFullYear() === year;
-        });
-        if (game) {
-            className += ' matchday';
-            matchInfo = `
-                <div class="match-info">
-                    <img src="${game.logo}" alt="${game.opponent}" style="width: 30px; height: 30px;">
-                    <span>${game.opponent}</span>
-                </div>
-            `;
-        }
-        calendarBody.innerHTML += `
-            <div class="${className}">
-                ${day}
-                ${matchInfo}
-            </div>
-        `;
-    }
-    const updateCalendar = async () => {
-        const games = await loadScheduleFromJSON();
-        generateCalendar(currentDate.getFullYear(), currentDate.getMonth(), games);
-    };
-    
-    prevMonthBtn.addEventListener('click', () => {
-        currentDate.setMonth(currentDate.getMonth() - 1);
-        updateCalendar();
-    });
-    
-    nextMonthBtn.addEventListener('click', () => {
-        currentDate.setMonth(currentDate.getMonth() + 1);
-        updateCalendar();
-    });
-    
-    updateCalendar();
-    
-};
 
 // Καλέστε τη συνάρτηση για να δημιουργήσετε το ημερολόγιο
+
+
 document.addEventListener('DOMContentLoaded', async() => {
-    const prevMonthBtn = document.getElementById('prev-month');
-    const nextMonthBtn = document.getElementById('next-month');
-    let currentDate = new Date();
-
-    const games = await loadScheduleFromJSON();
-
-    const updateCalendar = () => {
-        const year = currentDate.getFullYear();
-        const month = currentDate.getMonth();
-        generateCalendar(year, month, games);
-    };
-
-    prevMonthBtn.addEventListener('click', () => {
-        currentDate.setMonth(currentDate.getMonth() - 1);
-        updateCalendar();
-    });
-
-    nextMonthBtn.addEventListener('click', () => {
-        currentDate.setMonth(currentDate.getMonth() + 1);
-        updateCalendar();
-    });
-
-    // Φόρτωση του αρχικού ημερολογίου
-    updateCalendar();
-});
-
-document.addEventListener('DOMContentLoaded', () => {
     const prevMonthBtn = document.getElementById('prev-month');
     const nextMonthBtn = document.getElementById('next-month');
     const calendarBody = document.getElementById('calendar-body');
@@ -260,6 +182,9 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
     }
     let currentDate = new Date();
+
+    const games = await loadScheduleFromJSON();
+
 
     const loadCalendar = () => {
         const year = currentDate.getFullYear();
@@ -277,31 +202,49 @@ document.addEventListener('DOMContentLoaded', () => {
         daysOfWeekRow.classList.add('days-of-week');
         daysOfWeek.forEach(day => {
             const dayElement = document.createElement('div');
+            dayElement.classList.add('day-name');
             dayElement.textContent = day;
             daysOfWeekRow.appendChild(dayElement);
         });
         calendarBody.appendChild(daysOfWeekRow);
         
-        const firstDay = new Date(year, month, 1);
-        const lastDay = new Date(year, month + 1, 0);
-        const daysInMonth = lastDay.getDate();
-        
-        // Εύρεση πρώτης ημέρας της εβδομάδας
-        const startDay = firstDay.getDay();
+        const firstDay = new Date(year, month, 1).getDay();
+        const lastDay = new Date(year, month + 1, 0).getDate();;
         
         // Δημιουργία των ημερών του μήνα
         
         
         // Κενά κελιά μέχρι την πρώτη ημέρα του μήνα
-        for (let i = 0; i < startDay; i++) {
+        for (let i = 0; i < firstDay; i++) {
             const emptyCell = document.createElement('div');
-            emptyCell.classList.add('empty');
+            emptyCell.classList.add('calendar-day','empty');
             calendarBody.appendChild(emptyCell);
         }
         
-        for (let day = 1; day <= daysInMonth; day++) {
+        for (let day = 1; day <= lastDay; day++) {
             const dayElement = document.createElement('div');
+            dayElement.classList.add('calendar-day');
             dayElement.textContent = day;
+
+            const gameDate = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+            const game = games ? games.find(g => g.date === gameDate) : null;
+            if (game) {
+                const matchInfo = document.createElement('div');
+                matchInfo.classList.add('match-info');
+    
+                const logo = document.createElement('img');
+                logo.src = game.logo;
+                logo.alt = game.opponent;
+                logo.classList.add('team-logo');
+    
+                const opponent = document.createElement('span');
+                
+                matchInfo.appendChild(logo);
+                matchInfo.appendChild(opponent);
+    
+                dayElement.appendChild(matchInfo);
+                dayElement.style.backgroundColor = game.home_away === 'Εντός' ? 'red' : 'blue';
+            }
             calendarBody.appendChild(dayElement);
         }
     };

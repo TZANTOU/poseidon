@@ -53,6 +53,20 @@ const displayNextMatch = (nextMatch) => {
                     homeLogo = nextMatch.logo;
                     awayLogo = 'images/logo.png'; // Λογότυπο της ομάδας ΠΟΣΕΙΔΩΝ
                 }
+                const matchDate = new Date(nextMatch.date);
+
+                const daysOfWeek = ['Κυριακή', 'Δευτέρα', 'Τρίτη', 'Τετάρτη', 'Πέμπτη', 'Παρασκευή', 'Σάββατο'];
+                const months = ['Ιανουαρίου', 'Φεβρουαρίου', 'Μαρτίου', 'Απριλίου', 'Μαΐου', 'Ιουνίου', 'Ιουλίου', 'Αυγούστου', 'Σεπτεμβρίου', 'Οκτωβρίου', 'Νοεμβρίου', 'Δεκεμβρίου'];
+                const dayName = daysOfWeek[matchDate.getDay()];
+                const day = matchDate.getDate();
+                const monthName = months[matchDate.getMonth()];
+                const year = matchDate.getFullYear();
+                const hours = matchDate.getHours().toString().padStart(2, '0');
+                const minutes = matchDate.getMinutes().toString().padStart(2, '0');
+
+                const formattedDate = `${dayName} ${day} ${monthName} ${year} ${hours}:${minutes}`;
+
+
                 nextMatchContainer.innerHTML = `
                     <div class="match-details">
                         <span class="next-match-text">NEXT MATCH</span>
@@ -62,7 +76,7 @@ const displayNextMatch = (nextMatch) => {
                     </div>
                     <div class="match-info">
                         <p>${nextMatch.matchday}</p>
-                        <p>Ημερομηνία: ${nextMatch.date}</p>
+                        <p>Ημερομηνία: ${formattedDate}</p>
                     </div>
                     <div id="countdown-timer" class="countdown-timer">
                             Ξεκινάει σε: <span id="time-left">--:--:--</span>
@@ -70,7 +84,7 @@ const displayNextMatch = (nextMatch) => {
                 `;
 
                 // Λήψη ημερομηνίας αγώνα
-                const matchDate = new Date(nextMatch.date).getTime();
+                
 
                 // Ενημέρωση του χρονόμετρου κάθε δευτερόλεπτο
                 const updateCountdown = () => {

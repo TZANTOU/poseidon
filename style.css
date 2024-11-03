@@ -498,9 +498,13 @@ img {
 
     .completed-match .team-logo {
         margin-bottom: 10px;
+        mix-blend-mode: difference;
+        filter: invert(1) brightness(100%) contrast(100%);
     }
 }
-
+.match-info p{
+        padding-right: 0;
+    }
 #results-container{
     /* Άλλαξέ το ώστε να κατεβαίνει κάτω από την βαθμολογία*/
     position: absolute;
@@ -547,7 +551,28 @@ img {
 
     }
 }
+/* Στυλ για τις ημέρες με αγώνες */
+.calendar-day .match-info {
+    margin-top: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
 
+
+.calendar-day[style*="background-color: red"] {
+    background-color: #ffcccc;
+}
+
+.calendar-day[style*="background-color: blue"] {
+    background-color: #cce0ff;
+}
+.opponent-logo {
+    margin-bottom: 5px;
+    border-radius: 50%;
+    border: 2px solid #fff;
+}
 .hover-link:hover {
     color: rgb(0, 118, 173);
 }
@@ -667,6 +692,7 @@ img {
         margin-left: 0px;
         border-radius: 0px;
         left:0%;
+        
         
     }
     #completed-games p{
@@ -890,6 +916,9 @@ img {
 
 
 }
+#month-year{
+    padding-right: 0;
+}
 
 @media(min-width: 769px) {
     .menu-toggle {
@@ -1079,27 +1108,26 @@ img {
 }
 
 .days-of-week {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    text-align: center;
-    font-weight: bold;
-    background-color: #ddd;
-    padding: 5px 0;
+    display: contents;
 
 }
-
+.days-of-week .day-name{
+    background-color:#00a1d662;
+}
 .calendar-day {
+    position: relative;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 10px;
+    padding: 5px;
     border: 1px solid #ccc;
     background-color: #fff;
-    min-height: 50px;
+    min-height: 80px;
 }
 
 .calendar-day.matchday {
-    background-color: lightgreen;
+    background-color: white;
 }
 
 .calendar-day.empty {
@@ -1162,10 +1190,9 @@ img {
 }
 
 .calendar-day img {
-    max-width: 50px;
-    height: auto;
-    mix-blend-mode: difference;
-    filter: invert(1) grayscale(100%) brightness(100%) contrast(100%);
+    width: 70px;
+    height: 70px;
+    margin-bottom: 5px;
 }
 
 #calendar {

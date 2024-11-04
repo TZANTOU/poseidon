@@ -24,13 +24,13 @@
         "id":"3",
          "name": "Αλκιβιάδης Καζάς",
         "position": "LB/RB",
-        "image": ""
+        "image": "images/αλκησ.png"
      },
      {
         "id":"6",
          "name": "Χριστόφορος Κουτσοποδιώτης",
         "position": "RB/CM",
-        "image": ""
+        "image": "images/χριστοφορος.png"
      },
      {
         "id":"7",
@@ -69,40 +69,16 @@
         "image": "images/13.png"
      },
      {
-      "id":"2",  
-      "name": "Φάνης Παπασταύρου",
-        "position": "RB/CM",
-        "image": "images/2.png"
-     },
-     {
       "id":"12",  
       "name": "Γιάννης Μπάρδης",
         "position": "CAM",
-        "image": "images/12.png"
-     },
-     {
-      "id":"14",  
-      "name": "Γιώργος Αντουλινάκης",
-        "position": "ST",
-        "image": "images/14.png"
+        "image": "images/γιαννης.png"
      },
      {
       "id":"15",  
       "name": "Εφραίμ Κοτζαμάνης",
         "position": "ST/RW/LW/CAM",
         "image": "images/16.png"
-     },
-     {
-      "id":"16",  
-      "name": "Μαρικλέν Τοπάλλι",
-        "position": "LB",
-        "image": ""
-     },
-     {
-      "id":"17",  
-      "name": "Νου Γκιονάι",
-        "position": "RW",
-        "image": "images/18.png"
      },
      {
       "id":"18",  

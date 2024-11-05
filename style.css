@@ -672,6 +672,7 @@ img {
     
 }
 @media (max-width: 768px) {
+    
     iframe{
         width: 100%;
     }
@@ -1478,9 +1479,22 @@ table tbody tr:nth-last-child(2) {
         width: 100%;
         padding: 0px;
     }
-
+    .calendar-container{
+        padding: 0px;
+        margin: 0px;
+    }
     #random-moment p {
         font-size: 1rem;
         padding: 1rem;
+    }
+    .calendar-day img{
+        height: auto;
+    }
+    .calendar-day .match-info{
+        width: 50px;
+    }
+    .legend p {
+        align-items: center;
+        padding-right: 0;
     }
 }

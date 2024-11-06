@@ -1510,5 +1510,13 @@ table tbody tr:nth-last-child(2) {
         align-items: center;
         padding-right: 0;
     }
+    main p{
+        font-size: 1.1rem;
+        line-height: 1.6;
+        text-align: justify;
+        margin-bottom: 20px;
+        margin-left: 25px;
+
+    }
     
 }

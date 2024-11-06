@@ -227,7 +227,7 @@ document.addEventListener('DOMContentLoaded', async() => {
             dayElement.textContent = day;
 
             const gameDate = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
-            const game = games ? games.find(g => g.date === gameDate) : null;
+            const game = games ? games.find(g => g.date.startsWith(gameDate)) : null;
             if (game) {
                 const matchInfo = document.createElement('div');
                 matchInfo.classList.add('match-info');

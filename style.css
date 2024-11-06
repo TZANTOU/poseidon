@@ -505,8 +505,8 @@ img {
 #results-container{
     /* Άλλαξέ το ώστε να κατεβαίνει κάτω από την βαθμολογία*/
     position: absolute;
-    top: 130%;
-    left: 35%;
+    top: 155%;
+    left: 5%;
 }
 @media(max-width:576px) {
     .navbar .logo {

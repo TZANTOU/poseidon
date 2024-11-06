@@ -1475,6 +1475,9 @@ table tbody tr:nth-last-child(2) {
     margin: 0;
 }
 @media (max-width: 768px) {
+    .calendar {
+        width: 95%;
+    }
     #random-moment {
         width: 100%;
         padding: 0px;
@@ -1482,6 +1485,7 @@ table tbody tr:nth-last-child(2) {
     .calendar-container{
         padding: 0px;
         margin: 0px;
+        width: 100%;
         
     }
     #random-moment p {
@@ -1498,11 +1502,13 @@ table tbody tr:nth-last-child(2) {
         font-size: 0.75em;
         padding: 5px;
     }
-    .calendar-body {
+    #calendar-body {
         gap: 3px;
+        width: auto;
     }
     .legend p {
         align-items: center;
         padding-right: 0;
     }
+    
 }

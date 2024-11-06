@@ -105,6 +105,7 @@ document.addEventListener('DOMContentLoaded', function () {
             {src:'1976.jpg', caption:'1976'},
             {src:'1978.jpg', caption:'1978, Γήπεδο Ερμιόνης, Ύδρα - Ποσειδώνας Διδύμων 2-4'},
             { src: '1979.jpg', caption: '1979' },
+            {src:'1979-2.jpg',caption:'1979'},
             {src:'1979-argos.jpg', caption:'1979, Γήπεδο Παναργειακού'},
             {src:'1980-kiveri.jpg', caption:'1980, Ποσειδώνας Διδύμων - Ερμής Κιβερίου 2-2'},
             {src:'1980.jpg', caption:'1980, Γήπεδο Ερμιόνης'},
@@ -115,11 +116,14 @@ document.addEventListener('DOMContentLoaded', function () {
             {src:'1984-xwnika-poseidon-1-1.jpg',caption:'1984, Γήπεδο Χώνικα, Χώνικα - Ποσειδώνας Διδύμων 1-1'}
         ],
         "1985-1997": [
+            {src:'158885964_1096681314151423_121548886690021432_n.jpg'},
             { src: '1985-kupello-4-0--drepano.jpg', caption: '1985 Ποσειδώνας Διδύμων - Αστέρας Δρεπανιακός 4-0 Κύπελλο' },
             { src: '1985-2-2--panargeiakos.jpg', caption: '1985 Παναργειακός - Ποσειδώνας Διδύμων 2-2, Δ΄ Εθνική' },
-            { src: '1986-kefalonia.jpg', caption: '1986 γήπεδο Κεφαλονιάς, Δ΄ Εθνική' }
+            { src: '1986-kefalonia.jpg', caption: '1986 γήπεδο Κεφαλονιάς, Δ΄ Εθνική' },
+            {src:'1995.jpg',caption:''}
         ],
         "1998-now": [
+            {src: 'Image_20240930_0009.jpg', caption:''},
             { src: '2017.jpg', caption: '2017' },
             {src:'458108354_555380303533873_7713678727587974578_n.jpg', caption:'2024, Φιλικό Προετοιμασίας στον Γαλατά'}
         ]

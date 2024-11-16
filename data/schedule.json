@@ -61,6 +61,7 @@
             "opponent": "ΕΘΝΙΚΟΣ ΤΟΛΟΥ",
             "date": "2024-11-09T15:00:00",
             "home_away": "Εκτός",
+            "result":"4-0",
             "logo":"https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgiYi2AgG9ZDaLkDhmsTm3PO_Nu_WGi9HO6taC3-7uPvkBVI-RROU3yK6IZ3hDU7ZjMrpbotwoYHcJctoHKPgyB9Z1V0qOnYheQBVj424x63rm5rimwDtKUo88rShPhlJnm1jnxEtD512EYPlYegnXha7ldJXL0bAVJ3RHpp2f08DtwQDWQ6LRPlRYb2IU/s1280/%CE%95%CE%B8%CE%BD%CE%B9%CE%BA%CF%8C%CF%82%20%CE%A4%CE%BF%CE%BB%CE%BF%CF%8D.jpg"
         },
         {
@@ -68,7 +69,8 @@
             "opponent": "ΠΑΟΚ ΚΟΥΤΣΟΠΟΔΙΟΥ",
             "date": "2024-11-16T15:00:00",
             "home_away": "Εντός",
-            "logo":"https://www.epsarg.gr/images/teamLogos/IMG_2641.JPG"
+            "logo":"https://www.epsarg.gr/images/teamLogos/IMG_2641.JPG",
+            "result":"3-0"
         },
         {
             "matchday": "9η Αγωνιστική",

@@ -34,6 +34,7 @@ const loadRandomMoment = async () => {
 const displayMoment = (moment) => {
     const container = document.getElementById('random-moment');
     container.innerHTML = `
+        <h2>Moment of the Day</h2>
         <img src="${moment.url}" alt="Moment">
         <p>${moment.caption}</p>
     `;

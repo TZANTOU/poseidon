@@ -206,9 +206,13 @@ img {
 }
 
 .carousel p {
+    width: 800px;
     font-size: 1rem;
     color: #555;
     margin-bottom: 15px;
+    padding-right: 0;
+    align-items: center;
+
 }
 
 .carousel h2 {

@@ -74,7 +74,7 @@ const createPagination = (totalPages) => {
         const pageButton = document.createElement('button');
         pageButton.textContent = i;
         pageButton.classList.add('page-btn');
-        if(i==1){
+        if(totalPages==1){
             return;
         }
         if (i === currentPage) {

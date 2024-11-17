@@ -14,6 +14,34 @@
     <script src="nextMatch.js"></script>
     <script src="random.js"></script>
     <script src="loadfacebookphotos.js"></script>
+    <style>
+        button {
+  background-color: #4CAF50; /* Πράσινο χρώμα */
+  color: white; /* Λευκό κείμενο */
+  border: none; /* Χωρίς περίγραμμα */
+  padding: 10px 20px; /* Εσωτερικό γέμισμα */
+  text-align: center; /* Κείμενο κεντραρισμένο */
+  text-decoration: none; /* Αφαίρεση υπογράμμισης */
+  display: inline-block; /* Εμφάνιση inline */
+  font-size: 16px; /* Μέγεθος γραμματοσειράς */
+  cursor: pointer; /* Δείκτης χεριού */
+  border-radius: 5px; /* Στρογγυλεμένες γωνίες */
+  transition: background-color 0.3s, transform 0.3s; /* Ομαλή μετάβαση */
+  margin-top: 20px; /* Απόσταση από τις φωτογραφίες */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Ελαφρύ σκίασμα */
+}
+
+button:hover {
+  background-color: #45a049; /* Σκούρο πράσινο όταν το δείκτη περνά πάνω από το κουμπί */
+  transform: scale(1.05); /* Μικρή αύξηση στο μέγεθος του κουμπιού όταν το hover */
+}
+
+button:disabled {
+  background-color: #ccc; /* Γκρι χρώμα όταν είναι απενεργοποιημένο */
+  cursor: not-allowed; /* Δείκτης απαγόρευσης */
+  box-shadow: none; /* Κατάργηση σκιάς */
+}
+    </style>
     
 </head>
 <body>
@@ -65,34 +93,9 @@
     </div>
 -->
 <div class="c">
-    <div class="left-column">
-        <h3>Βαθμολογία Πρωταθλήματος Α1 Αργολίδας</h3>
-        <div id="ranking-container">
-
-        </div>
+    <div id="albums-container">
+        <h2>Facebook Photos</h2>
     </div>
-    
-    <div class="carousel-container">
-        <div class="carousel" id="carousel">
-            
-        </div>
-        <button class="prev-button">⟨</button>
-        <button class="next-button">⟩</button>
-    </div>
-
-    <div class="next-match-container">
-        <div id="next-match" class="next-match">
-            <!-- Το περιεχόμενο του αγώνα θα προστεθεί εδώ από το JavaScript -->
-        </div>
-    </div>
-    <div id="results-container">
-        <h2>Τελευταία Αποτελέσματα</h2>
-        <div id="completed-games"></div>
-        <div id="pagination"></div>
-    </div>
-</div>
-<div id="random-moment" class="random-moment">
-    <!-- Φωτογραφία και λεζάντα θα προστεθούν εδώ -->
 </div>
 </main>
 

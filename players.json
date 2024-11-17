@@ -3,99 +3,99 @@
       {
         "id": "1",
          "name": "Αργύρης Αλευράς",
-        "position": "GK",
+        "position": "GOALKEEPER",
         "image": "images/1.png"
       },
       
       {
         "id":"5",
          "name": "Αποστόλης Οικονομόπουλος",
-        "position": "CB",
+        "position": "DEFENDER",
         "image": "images/5.png"
      },
       {
         
          "id":"4",
          "name": "Παναγιώτης Σκαλτσάς",
-        "position": "CB",
+        "position": "DEFENDER",
         "image": "images/4.png"
      },
      {
         "id":"3",
          "name": "Αλκιβιάδης Καζάς",
-        "position": "LB/RB",
+        "position": "DEFENDER",
         "image": "images/αλκησ.png"
      },
      {
         "id":"6",
          "name": "Χριστόφορος Κουτσοποδιώτης",
-        "position": "RB/CM",
+        "position": "MIDFIELDER",
         "image": "images/χριστοφορος.png"
      },
      {
         "id":"7",
          "name": "Agustin Tresa",
-        "position": "CDM/CAM",
+        "position": "MIDFIELDER",
         "image": "images/7.png"
      },
      {
         "id":"10",
          "name": "Χρήστο Κέλλι",
-        "position": "ST/RW/LW/CAM",
+        "position": "FORWARD",
         "image": "images/10.png"
      },
      {
       "id":"11",  
       "name": "Ανάργυρος Αποστόλου",
-        "position": "RW",
+        "position": "FORWARD",
         "image": "images/11.png"
      },
      {
         "id":"8",
          "name": "Ανάργυρος Λαζάρου",
-        "position": "CB/CDM",
+        "position": "MIDFIELDER",
         "image": "images/8.png"
      },
      {
       "id":"9",  
       "name": "Νικόλας Λαζάρου",
-        "position": "ST",
+        "position": "FORWARD",
         "image": "images/9.png"
      },
      {
       "id":"13",  
       "name": "Γιώργος Μπάρδης",
-        "position": "LB",
+        "position": "DEFENDER",
         "image": "images/13.png"
      },
      {
       "id":"12",  
       "name": "Γιάννης Μπάρδης",
-        "position": "CAM",
+        "position": "MIDFIELDER / FORWARD",
         "image": "images/γιαννης.png"
      },
      {
       "id":"15",  
       "name": "Εφραίμ Κοτζαμάνης",
-        "position": "ST/RW/LW/CAM",
+        "position": "FORWARD",
         "image": "images/16.png"
      },
      {
       "id":"18",  
       "name": "Νικόλας Χασκάι",
-        "position": "RW",
+        "position": "FORWARD",
         "image": "images/17.png"
      },
      {
       "id":"19",  
       "name": "Πέτρος Πρένγκα",
-        "position": "RB",
+        "position": "DEFENDER",
         "image": "images/19.png"
      },
      {
       "id":"20",  
       "name": "Βαγγέλης Προσίλης",
-        "position": "LB/LW/CM",
+        "position": "DEFENDER / MIDFIELDER / FORWARD",
         "image": "images/20.png"
      }
      

@@ -1384,12 +1384,12 @@ table tbody tr:nth-last-child(2) {
 }
 
 .player-card {
-    background-color: #f5f5f5;
-    border-radius: 10px;
-    padding: 20px;
+    width: 270px;
+    height: 270px;
     text-align: center;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease;
+    
 }
 
 .player-card:hover {
@@ -1399,8 +1399,9 @@ table tbody tr:nth-last-child(2) {
 .player-card img {
     width: 100%;
     height: auto;
-    max-width: 200px;
-    border-radius: 50%;
+    border: solid;
+    border-color: #b50e0e;
+    border-radius: 10px;
 }
 .player {
     position: absolute;
@@ -1414,38 +1415,37 @@ table tbody tr:nth-last-child(2) {
     cursor: pointer;
     transition: transform 0.3s ease;
 }
-
+.player-info{
+    
+    font-size: 80px;
+    font-weight: 900;
+    opacity: 0.8;
+    color: rgba(255, 255, 255, 0.9);
+    text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.6);
+    
+}
 .player:hover {
     transform: scale(1.2); /* Μεγαλώνει τον παίκτη όταν περάσει από πάνω το ποντίκι */
-}
-
-#same-position-players {
-    margin-top: 20px;
-    display: flex;
-    gap: 10px;
 }
 
 .hidden {
     display: none;
 }
 
-#same-position-players img {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    transition: transform 0.3s ease;
-}
 
 .player-name {
-    font-size: 18px;
+    font-size: 25px;
     font-weight: bold;
-    margin-top: 10px;
+    margin-top: -120px;
+
 }
 
 .player-position {
     font-size: 14px;
-    color: #777;
-    margin-top: 5px;
+    color: #bdb000;
+    align-items: center;
+    width: 100%;
+    padding-right: 0;
 }
 
 #random-moment{

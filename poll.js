@@ -72,7 +72,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const notOpenSection = document.getElementById('not-open');
     const voteSection = document.getElementById('vote-section');
     // Check if voting is open
-    const matchStartTime = new Date('2024-11-18T00:00:00'); // Time when match starts (for example)
+    const matchStartTime = new Date('2024-11-18T08:30:00'); // Time when match starts (for example)
     const matchEndTime = new Date(matchStartTime.getTime() + 105 * 60000); // 105 minutes after start
     const voteCloseTime = new Date(matchEndTime.getTime() + 30 * 60000); // 30 minutes after match end
     const currentTime = new Date();

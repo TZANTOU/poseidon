@@ -106,7 +106,9 @@ document.addEventListener("DOMContentLoaded", function() {
             headers: { 'Content-Type': 'application/json' }
         })
         .then(response =>{
-            console.log(response);
+            if (!response.ok) {
+                throw new Error('Failed to submit vote');
+            }
             return  response.json();
         })
         
@@ -118,6 +120,9 @@ document.addEventListener("DOMContentLoaded", function() {
     }
     
     function displayResults(results) {
+        const resultsSection = document.getElementById('results-section');
+        const voteSection = document.getElementById('vote-section');
+    
         voteSection.style.display = 'none';
         resultsSection.style.display = 'block';
 
@@ -127,7 +132,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
         // Show other top players
         const topPlayersList = document.getElementById('top-players');
-        results.topPlayers.forEach(player => {
+        topPlayersList.innerHTML = ''; // Καθαρίζει τη λίστα
+        results.allresults.forEach(player => {
             const li = document.createElement('li');
             li.textContent = `${player.name} - ${player.percentage}%`;
             topPlayersList.appendChild(li);

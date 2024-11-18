@@ -105,11 +105,18 @@ document.addEventListener("DOMContentLoaded", function() {
             body: JSON.stringify({playerId}),
             headers: { 'Content-Type': 'application/json' }
         })
-        .then(response => response.json())
+        .then(response =>{
+            console.log(response);
+            return  response.json();
+        })
+        
+        
         .then(results => {
             displayResults(results);
         });
+        
     }
+    
     function displayResults(results) {
         voteSection.style.display = 'none';
         resultsSection.style.display = 'block';
@@ -126,4 +133,5 @@ document.addEventListener("DOMContentLoaded", function() {
             topPlayersList.appendChild(li);
         });
     }
+    
 })

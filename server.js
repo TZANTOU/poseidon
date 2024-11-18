@@ -1,80 +1,54 @@
 const express = require('express');
-const bodyParser = require('body-parser');
 const fs = require('fs');
+
 const app = express();
-const PORT = process.env.PORT || 3000;
+app.use(express.json());
 
-// Ενεργοποιούμε την επεξεργασία JSON αιτημάτων
-app.use(bodyParser.json());
-app.use(express.static('public'));
+const VOTES_FILE = './votes.json';
 
-// Διαδρομή για αποστολή ψήφων
+const readVotes = () => {
+    if (!fs.existsSync(VOTES_FILE)) {
+        return {};
+    }
+    const data = fs.readFileSync(VOTES_FILE, 'utf8');
+    return JSON.parse(data);
+};
+const writeVotes = (votes) => {
+    fs.writeFileSync(VOTES_FILE, JSON.stringify(votes, null, 2));
+};
 app.post('/submit-vote', (req, res) => {
     const { playerId } = req.body;
+
     if (!playerId) {
-        return res.status(400).send({ message: 'Player ID is required' });
+        return res.status(400).json({ error: 'No player ID provided' });
     }
 
-    // Διαβάζουμε τα δεδομένα ψήφων
-    fs.readFile('votes.json', (err, data) => {
-        if (err) {
-            return res.status(500).send({ message: 'Error reading votes file' });
-        }
+    const votes = readVotes();
 
-        let votes = JSON.parse(data);
-        if (!votes[playerId]) {
-            votes[playerId] = 0;
-        }
-        votes[playerId] += 1;
+    // Αύξηση ψήφου για τον παίκτη
+    if (!votes[playerId]) {
+        votes[playerId] = 0;
+    }
+    votes[playerId] += 1;
 
-        // Αποθηκεύουμε τις νέες ψήφους στο αρχείο
-        fs.writeFile('votes.json', JSON.stringify(votes), (err) => {
-            if (err) {
-                return res.status(500).send({ message: 'Error saving votes' });
-            }
-            res.status(200).send({ message: 'Vote submitted successfully' });
-        });
-    });
-});
+    writeVotes(votes);
 
-// Διαδρομή για επιστροφή των αποτελεσμάτων
-app.get('/results', (req, res) => {
-    fs.readFile('votes.json', (err, data) => {
-        if (err) {
-            return res.status(500).send({ message: 'Error reading votes file' });
-        }
+    // Υπολογισμός MVP και επιστροφή δεδομένων
+    const totalVotes = Object.values(votes).reduce((sum, count) => sum + count, 0);
+    const mvp = Object.keys(votes).reduce((a, b) => (votes[a] > votes[b] ? a : b));
 
-        const votes = JSON.parse(data);
-
-        // Υπολογίζουμε τον MVP και τους άλλους παίκτες
-        let totalVotes = 0;
-        let topPlayers = [];
-        let maxVotes = 0;
-        for (let playerId in votes) {
-            totalVotes += votes[playerId];
-            if (votes[playerId] > maxVotes) {
-                maxVotes = votes[playerId];
-            }
-            topPlayers.push({ playerId, votes: votes[playerId] });
-        }
-
-        topPlayers = topPlayers.map(player => ({
-            playerId: player.playerId,
-            name: `Player ${player.playerId}`, // Εδώ μπορείς να βάλεις τα ονόματα των παικτών από το `players.json`
-            percentage: ((player.votes / totalVotes) * 100).toFixed(2)
-        }));
-
-        // Βρίσκουμε τον MVP
-        const mvp = topPlayers.find(player => player.votes === maxVotes);
-
-        res.json({
-            mvp,
-            topPlayers
-        });
+    res.json({
+        mvp: { name: mvp, percentage: ((votes[mvp] / totalVotes) * 100).toFixed(2) },
+        topPlayers: Object.entries(votes)
+            .sort(([, a], [, b]) => b - a)
+            .map(([name, count]) => ({
+                name,
+                percentage: ((count / totalVotes) * 100).toFixed(2),
+            })),
     });
 });
 
 // Εκκίνηση του server
-app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
+app.listen(3000, () => {
+    console.log(`Server running on http://localhost:3000`);
 });

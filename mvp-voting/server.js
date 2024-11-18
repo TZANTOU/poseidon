@@ -1,69 +1,79 @@
 const express = require('express');
-const bodyParser = require('body-parser');
 const fs = require('fs');
+const path = require('path');
 
 const app = express();
-app.use(bodyParser.json());
+app.use(express.json());
 
-const VOTES_FILE = 'votes.json';
-const hasVoted = new Set();
-app.use((err, req, res, next) => {
-    console.error(err.stack);
-    res.status(500).send({ error: 'Something went wrong!' });
-});
-// Endpoint για αποστολή ψήφου
+// Path για το votes.json
+const votesFilePath = path.join(__dirname, 'votes.json');
+
+// Endpoint: Υποδοχή ψήφων
 app.post('/submit-vote', (req, res) => {
-    try{
-        const { playerId } = req.body;
-        app.set('trust proxy', true); // Επιτρέπει την ανάλυση του X-Forwarded-For
-        const userIP =req.headers['x-forwarded-for'] || req.ip;
-        console.log('Client IP:', userIP); // Καταγραφή της IP
-        if (!playerId) {
-            return res.status(400).send({ error: 'Player ID is required.' });
+    const { playerId } = req.body;
+
+    // Έλεγχος αν υπάρχει playerId
+    if (!playerId) {
+        return res.status(400).json({ error: 'Player ID is required.' });
+    }
+
+    // Διαβάζει ή δημιουργεί το votes.json
+    let votes = {};
+    if (fs.existsSync(votesFilePath)) {
+        try {
+            votes = JSON.parse(fs.readFileSync(votesFilePath, 'utf-8'));
+        } catch (err) {
+            console.error("Error reading votes.json:", err); // Debugging
+            return res.status(500).json({ error: 'Failed to read votes.' });
         }
-        console.log(`Vote received for playerId: ${playerId}`);
-        let votes;
-            try {
-                votes = JSON.parse(fs.readFileSync('VOTES_FILE', 'utf-8') || '{}');
-            } catch (error) {
-                votes = {}; // Δημιουργία νέου κενού αντικειμένου αν αποτύχει η ανάγνωση
-            }
-        
-        if (hasVoted.has(userIP)){
-            return res.status(403).send({ error: 'You have already voted.' });
+    }
+
+    // Έλεγχος αν υπάρχει ήδη ψήφος από το IP του χρήστη (προαιρετικό)
+    const userIP = req.ip;
+    if (!votes.meta) votes.meta = {}; // Μεταδεδομένα για τις ψήφους
+    if (votes.meta[userIP]) {
+        return res.status(403).json({ error: 'You have already voted.' });
+    }
+    votes.meta[userIP] = true;
+
+    // Αυξάνει την ψήφο για τον playerId
+    if (!votes[playerId]) votes[playerId] = 0;
+    votes[playerId]++;
+
+    // Ενημερώνει το votes.json
+    fs.writeFile('votes.json', JSON.stringify(votes, null, 2), (err) => {
+        if (err) {
+            return res.status(500).json({ error: 'Failed to save vote data.' });
         }
-        hasVoted.add(userIP);
-        votes[playerId] = (votes[playerId] || 0) + 1;
-
-        fs.writeFileSync(VOTES_FILE, JSON.stringify(votes));
         
+        // Επιστροφή των ενημερωμένων αποτελεσμάτων
+        // Υπολογισμός αποτελεσμάτων
+        const totalVotes = Object.values(votes).reduce((sum, v) => sum + (typeof v === 'number' ? v : 0), 0);
+        const sortedResults = Object.entries(votes)
+            .filter(([key]) => key !== 'meta') // Αφαιρεί το meta
+            .map(([id, count]) => ({
+                id,
+                votes: count,
+                percentage: ((count / totalVotes) * 100).toFixed(2),
+            }))
+            .sort((a, b) => b.votes - a.votes);
 
-        const sortedVotes = Object.entries(votes).sort(([, a], [, b]) => b - a);
-        const mvp = Object.keys(votes).reduce((topPlayer, player) => {
-            if (!topPlayer || votes[player] > votes[topPlayer]) {
-                return player;
-            }
-            return topPlayer;
-        }, null);
+        const mvp = sortedResults[0] || { id: null, votes: 0, percentage: '0.00' };
 
-        res.status(200).send({
-            message: 'Vote registered successfully.',
-            mvp:{id: mvp, votes: votes[mvp]},
-            allResults:sortedVotes.map(([id,votes])=>({id,votes})),
+        // Επιστροφή αποτελεσμάτων
+        console.log("Votes:", votes);
+        console.log("Sorted results:", sortedResults);
+        console.log("MVP:", mvp);
+        res.status(200).json({
+            results: Object.fromEntries(Object.entries(votes).filter(([key]) => key !== 'meta')),
+            mvp,
+            allresults: sortedResults,
         });
-    }
-    catch(error){
-        console.error('Error in /submit-vote:', error);
-        res.status(500).send({ error: 'Something went wrong!' });
-    }
+    });
+
+
+    
 });
 
-// Εξαγωγή του app χωρίς να το ξεκινάμε
+// Εκκίνηση του server
 module.exports = app;
-
-// Αν το αρχείο τρέχει άμεσα, ξεκίνα τον server
-if (require.main === module) {
-    app.listen(3000, () => {
-        console.log('Server running on http://localhost:3000');
-    });
-}

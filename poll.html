@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Α.Π.Ο. Ποσειδών Διδύμων</title>
+    <title>Α.Π.Ο. Ποσειδών Διδύμων - Ψηφοφορία MVP</title>
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,700;1,800&display=swap" rel="stylesheet">
     <link rel="shortcut icon" href="images/logo.ico">
     <script src="script.js" defer></script>
-    <script src="players.js"></script>
+    <script src="mvp-voting/poll.js"></script>
     <style>
         .wheel-container {
             display: flex;
@@ -93,13 +93,35 @@
         </div>    
     </nav>
     <main>
+        <h1>Ψηφοφορία MVP Αγώνα</h1>
+
+        <!-- Ψηφοφορία -->
+        <div id="vote-section">
+            <h2>Επιλέξτε τον MVP του αγώνα</h2>
+            <div id="players-container" class="players-grid">
+                <!-- Οι καρτέλες των παικτών θα δημιουργούνται εδώ δυναμικά -->
+            </div>
+        </div>
+        <div id="results-section" style="display: none;">
+            <h2>Αποτελέσματα Ψηφοφορίας</h2>
+            <p>O MVP του αγώνα: <span id="mvp-name"></span> με ποσοστό <span id="mvp-percentage"></span>%</p>
+            <h3>Άλλοι Παίκτες</h3>
+            <ul id="top-players"></ul>
+        </div>
+    
+        <!-- Μήνυμα όταν η ψηφοφορία δεν είναι ανοιχτή -->
+        <div id="not-open" style="display: none;">
+            <h2>Ο αγώνας δεν έχει ξεκινήσει ακόμα. Αναμένετε...</h2>
+        </div>
+    </main>
+    <!--
         <h1>Instagram Comment Winner Picker</h1>
     <textarea id="comments" rows="10" cols="50" placeholder="Εισήγαγε τα σχόλια εδώ (ένα ανά γραμμή)"></textarea><br>
-    <button class="load-btn" onclick="loadComments()">Φόρτωμα Σχολίων</button> <!-- Νέο κουμπί -->
+    <button class="load-btn" onclick="loadComments()">Φόρτωμα Σχολίων</button> <!-- Νέο κουμπί 
     <button class="spin-btn" onclick="spinWheel()">Επέλεξε Νικητή</button>
     <div class="wheel-container">
         <canvas id="wheel" width="1000" height="1000"></canvas>
-        <div class="arrow"></div> <!-- Δείκτης (βέλος) -->
+        <div class="arrow"></div> <!-- Δείκτης (βέλος) 
     </div>
     <h2 id="winner">Ο νικητής θα εμφανιστεί εδώ</h2>
     
@@ -230,22 +252,7 @@
             }
     </script>
     </main>
-<!-- <main>
-    <div class="vote-container">
-        <h2>Vote for MVP</h2>
-        <div id="players-container" class="players-grid">
-             Οι παίκτες θα φορτωθούν δυναμικά εδώ 
-        </div>
-    
-         Εμφάνιση των αποτελεσμάτων 
-        <div class="results">
-            <h3>Current MVP Voting Results</h3>
-            <ul id="results-list">
-                 Οι ψήφοι θα εμφανίζονται εδώ 
-            </ul>
-        </div>
-    </div>
-</main>
+ 
 -->
 
 

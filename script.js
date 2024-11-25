@@ -52,7 +52,8 @@ const displayArticles = (articles, page) => {
             content.getElementById('news-desc').textContent = article.description;
             content.getElementById('news-img').src = article.imageUrl;
             
-            const reverseIndex = totalArticles - 1 - index;
+            const globalIndex = startIndex + index;
+            const reverseIndex = totalArticles - 1 - globalIndex;
             let articleLink = document.createElement('a');
             articleLink.href = `article.html?id=${reverseIndex}`;
             articleLink.appendChild(content);
@@ -83,7 +84,10 @@ const createPagination = (totalPages) => {
         pageButton.addEventListener('click', () => {
             currentPage = i;
             displayArticles(articles, currentPage); // Επαναφόρτωση των άρθρων για τη νέα σελίδα
-
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth', // Ομαλή μετακίνηση
+            });
             const previousActiveButton = document.querySelector('.page-btn.active');
             if (previousActiveButton) {
                 previousActiveButton.classList.remove('active');

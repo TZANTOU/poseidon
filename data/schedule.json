@@ -85,6 +85,7 @@
             "opponent": "ΔYΟΒΟΥΝΙΩΤΗΣ",
             "date": "2024-12-01T15:00:00",
             "home_away": "Εκτός",
+            "result":"0-3",
             "logo":"https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh70ukKcsqIB1LaT5JSNOfzYPjAX1d9ERkQtTMzFhgiCp8WJ2X-_4p4FXGgxOxq35cKo2RWxIPT-Ydd3m5I58lZHvZLe7hnqyEgtsHKc9Oj-ruidgal5tumdK_wq_eyFWLQFX2BFYJX2IU/s280-rw/IMG-6d7de3178e0d88f1e026c25d7057c146-V.jpg"
         },
         {
@@ -92,6 +93,7 @@
             "opponent": "ΕΝΩΣΗ ΕΡΜΙΟΝΙΔΑΣ",
             "date": "2024-12-08T15:00:00",
             "home_away": "Εντός",
+            "result":"0-2",
             "logo":"https://scontent.fath4-2.fna.fbcdn.net/v/t39.30808-6/274880483_4841610719226306_4510758180822668047_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=uU2AFkObSRwQ7kNvgFIJn7F&_nc_zt=23&_nc_ht=scontent.fath4-2.fna&_nc_gid=Ag_vjM9iLYCz98uaCEYZ_Gu&oh=00_AYBK8XzG6P2FHPMv1g9CAjuVutI3QnHWxVSPiljQegYiUg&oe=672D8C06"
         },
         {
@@ -99,6 +101,7 @@
             "opponent": "ΣΠΕΤΣΕΣ ",
             "date": "2024-12-15T15:00:00",
             "home_away": "Εκτός",
+            "result":"1-0",
             "logo":"https://www.epsarg.gr/images/teamLogos/mpoumpoulinaspetson.jpg"
         },
         {
@@ -106,6 +109,7 @@
             "opponent": "ΑΣΤΕΡΑΣ ΔΡΕΠΑΝΙΑΚΟΣ",
             "date": "2024-12-22T15:00:00",
             "home_away": "Εντός",
+            "result":"0-2",
             "logo":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS0X9l8bQT-ME519r0aNvbcHfRbkSYNXR3WJA&s"
         }
         

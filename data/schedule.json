@@ -111,6 +111,13 @@
             "home_away": "Εντός",
             "result":"0-2",
             "logo":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS0X9l8bQT-ME519r0aNvbcHfRbkSYNXR3WJA&s"
+        },
+        {
+            "matchday": "13η Αγωνιστική",
+            "opponent": "ΑΣΤΕΡΑΣ ΔΡΕΠΑΝΙΑΚΟΣ",
+            "date": "2025-01-22T15:00:00",
+            "home_away": "Εκτός",
+            "logo":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS0X9l8bQT-ME519r0aNvbcHfRbkSYNXR3WJA&s"
         }
         
     ]

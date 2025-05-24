@@ -18,49 +18,57 @@
          "id":"4",
          "name": "Παναγιώτης Σκαλτσάς",
         "position": "DEFENDER",
-        "image": "images/4.png"
+        "image": "images/4.png",
+        "goals": 2
      },
      {
         "id":"3",
          "name": "Αλκιβιάδης Καζάς",
         "position": "DEFENDER",
-        "image": "images/αλκησ.png"
+        "image": "images/αλκησ.png",
+        "goals": 1
      },
      {
         "id":"6",
          "name": "Χριστόφορος Κουτσοποδιώτης",
         "position": "MIDFIELDER",
-        "image": "images/χριστοφορος.png"
+        "image": "images/χριστοφορος.png",
+        "goals": 2
      },
      {
         "id":"7",
          "name": "Agustin Tresa",
         "position": "MIDFIELDER",
-        "image": "images/7.png"
+        "image": "images/7.png",
+        "goals": 2
      },
      {
         "id":"10",
          "name": "Χρήστο Κέλλι",
         "position": "FORWARD",
-        "image": "images/10.png"
+        "image": "images/10.png",
+        "goals": 3
      },
      {
       "id":"11",  
       "name": "Ανάργυρος Αποστόλου",
         "position": "FORWARD",
-        "image": "images/11.png"
+        "image": "images/11.png",
+        "goals": 2
      },
      {
         "id":"8",
          "name": "Ανάργυρος Λαζάρου",
         "position": "MIDFIELDER",
-        "image": "images/8.png"
+        "image": "images/8.png",
+        "goals": 3
      },
      {
       "id":"9",  
       "name": "Νικόλας Λαζάρου",
         "position": "FORWARD",
-        "image": "images/9.png"
+        "image": "images/9.png",
+        "goals": 7
      },
      {
       "id":"13",  
@@ -72,7 +80,8 @@
       "id":"12",  
       "name": "Γιάννης Μπάρδης",
         "position": "MIDFIELDER / FORWARD",
-        "image": "images/γιαννης.png"
+        "image": "images/γιαννης.png",
+        "goals": 3
      },
      {
       "id":"15",  
@@ -87,16 +96,11 @@
         "image": "images/17.png"
      },
      {
-      "id":"19",  
-      "name": "Πέτρος Πρένγκα",
-        "position": "DEFENDER",
-        "image": "images/19.png"
-     },
-     {
       "id":"20",  
-      "name": "Βαγγέλης Προσίλης",
-        "position": "DEFENDER / MIDFIELDER / FORWARD",
-        "image": "images/20.png"
+      "name": "Μαριγκλέν Τοπάλλι",
+        "position": "DEFENDER",
+        "image": "images/20.png",
+        "goals": 1
      }
      
 

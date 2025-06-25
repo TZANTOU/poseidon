@@ -2,6 +2,7 @@ body {
     font-family: 'Fira Sans', sans-serif;
     background-color: #f0f0f0;
     margin: 0;
+    scroll-behavior: smooth;
 }
 
 .album {
@@ -52,4 +53,31 @@ body {
     object-fit: cover;
     border-radius: 5px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+.season-summary .image-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.season-summary .image-box {
+  flex: 0 1 calc(25% - 1rem);
+  max-width: 200px;
+  text-align: center;
+}
+
+.season-summary .image-box img {
+  width: 100%;
+  height: auto;
+  max-height: 150px;
+  object-fit: cover;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.season-summary .image-box p {
+  margin-top: 0.5rem;
+  font-weight: bold;
+  font-size: 0.9rem;
 }

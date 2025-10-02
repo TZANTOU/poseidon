@@ -1,32 +1,111 @@
 const supportsTemplate = function(){
     return 'content' in document.createElement('template')
 }
+const toISO = (d) => /^\d{2}\/\d{2}\/\d{4}$/.test(d) ? d.split('/').reverse().join('-') : d;
 const formatDate = (dateString) => {
-    const date = new Date(dateString);
-    const day = String(date.getDate()).padStart(2, '0'); // Εξασφαλίζει ότι η μέρα έχει δύο ψηφία
-    const month = String(date.getMonth() + 1).padStart(2, '0'); // Μήνας από 0-11, οπότε προσθέτουμε 1
-    const year = date.getFullYear();
-    return `${day}/${month}/${year}`;
+  const dt = new Date(toISO(dateString));
+  if (isNaN(dt)) return dateString || '';
+  const day = String(dt.getDate()).padStart(2,'0');
+  const month = String(dt.getMonth()+1).padStart(2,'0');
+  const year = dt.getFullYear();
+  return `${day}/${month}/${year}`;
 };
 
 const articlesPerPage = 12;
 let currentPage = 1;
 let articles = [];
 
+// === NEW (Sheet config + helpers) ===
+const SHEET_ID = "1bzU8I1ENHuZMaeL53gngYwH_xDjbwgio7Or8nu0Sfac";
+const SHEET_TABS = ["articles", "Form Responses 1", "Sheet1"];
+const LOCAL_JSON_URL = "data/latest-news.json";
+
+function slugify(s){
+  const map = {'ά':'a','α':'a','β':'v','γ':'g','δ':'d','ε':'e','έ':'e','ζ':'z','η':'i','ή':'i','θ':'th','ι':'i','ί':'i','ϊ':'i','ΐ':'i','κ':'k','λ':'l','μ':'m','ν':'n','ξ':'x','ο':'o','ό':'o','π':'p','ρ':'r','σ':'s','ς':'s','τ':'t','υ':'y','ύ':'y','ϋ':'y','ΰ':'y','φ':'f','χ':'h','ψ':'ps','ω':'o','ώ':'o'};
+  return String(s||'').toLowerCase()
+    .replace(/[άαβγδεέζηήθιίϊΐκλμνξοόπρσςτυύϋΰφχψωώ]/g, ch => map[ch] || ch)
+    .replace(/[^a-z0-9]+/g,'-').replace(/(^-|-$)/g,'');
+}
+function gvizUrl(sheetId, sheetName){
+  return `https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?sheet=${encodeURIComponent(sheetName)}&tqx=out:json&t=${Date.now()}`;
+}
+function parseGviz(text){
+  const prefix="/*O_o*/\ngoogle.visualization.Query.setResponse(", suffix=");";
+  const s=text.trim(); if(!s.startsWith(prefix)) throw new Error("Unexpected GViz wrapper");
+  return JSON.parse(s.slice(prefix.length, s.length - suffix.length));
+}
+function rowsToArticles(gviz){
+  const cols=(gviz.table.cols||[]).map(c=>(c.label||"").trim());
+  const idx={
+    title: cols.findIndex(c=>c.toLowerCase()==="title"),
+    date: cols.findIndex(c=>c.toLowerCase()==="date"),
+    imageUrl: cols.findIndex(c=>c.toLowerCase()==="imageurl"),
+    description: cols.findIndex(c=>c.toLowerCase()==="description"),
+    content: cols.findIndex(c=>c.toLowerCase()==="content"),
+    slug: cols.findIndex(c=>c.toLowerCase()==="slug"),
+  };
+  const cell=(row,i)=> i<0 ? "" : (row.c[i]?.f ?? row.c[i]?.v ?? "");
+  const rows = gviz.table.rows || [];
+  return rows.map(r=>{
+    const title=String(cell(r,idx.title)||"").trim(); if(!title) return null;
+    const date=String(cell(r,idx.date)||"").trim();
+    const imageUrl=String(cell(r,idx.imageUrl)||"").trim();
+    const description=String(cell(r,idx.description)||"").trim();
+    const content=String(cell(r,idx.content)||"").trim();
+    const manualSlug=String(cell(r,idx.slug)||"").trim();
+    return { title, date, imageUrl, description, content, slug: manualSlug || slugify(title) };
+  }).filter(Boolean);
+}
+
+async function fetchJsonArticles(){
+  const res=await fetch(LOCAL_JSON_URL,{cache:"no-store"});
+  if(!res.ok) throw new Error(`HTTP ${res.status} on ${LOCAL_JSON_URL}`);
+  const data=await res.json();
+  const arr = Array.isArray(data?.articles) ? data.articles : Array.isArray(data) ? data : [];
+  return arr.map((a,i)=>({ ...a, id: typeof a.id==="number" ? a.id : i, slug: a.slug || slugify(a.title) }));
+}
+async function fetchSheetArticles(){
+  let lastErr;
+  for(const tab of SHEET_TABS){
+    try{
+      const res=await fetch(gvizUrl(SHEET_ID,tab),{cache:"no-store"});
+      if(!res.ok) throw new Error(`HTTP ${res.status} (${tab})`);
+      const txt=await res.text();
+      const gviz=parseGviz(txt);
+      const rows=rowsToArticles(gviz);
+      if(!rows.length) throw new Error(`No rows in "${tab}"`);
+      return rows; // χωρίς id
+    }catch(e){ lastErr=e; }
+  }
+  throw lastErr || new Error("Unable to read from Google Sheet.");
+}
+
+function computeBaseOffset(jsonArticles){
+  const ids=jsonArticles.map(a=>typeof a.id==="number"?a.id:null).filter(v=>v!==null);
+  return ids.length ? Math.max(...ids)+1 : jsonArticles.length;
+}
+async function buildCombinedArticles(){
+  let json=[]; try{ json=await fetchJsonArticles(); }catch(e){ console.warn("JSON load failed:",e); }
+  const offset = computeBaseOffset(json);
+  let sheet=[]; try{ sheet=await fetchSheetArticles(); }catch(e){ console.warn("Sheet load failed:",e); }
+  const sheetWithIds = sheet.map((a,i)=>({ ...a, id: offset + i }));
+  return [...json, ...sheetWithIds];
+}
+
+
+
 const loadNewsFromJSON = async () =>{
     try{
-        const response = await fetch('data/latest-news.json');
-        const data = await response.json();
-        articles = data.articles;
+        articles = await buildCombinedArticles();
         const totalArticles = articles.length;
         const totalPages = Math.ceil(totalArticles / articlesPerPage);
 
-        articles.sort((a, b) => new Date(b.date) - new Date(a.date));
+        articles.sort((a, b) => new Date(toISO(b.date)) - new Date(toISO(a.date)));
         displayArticles(articles, currentPage);
         
         createPagination(totalPages);
     }catch(error){
-            console.error("Error loading JSON:", error);
+        console.error("Error loading JSON:", error);
     }
 
 };
@@ -275,31 +354,26 @@ const loadCarouselFromJSON = async () => {
 
 
     try{
-        const response = await fetch('data/latest-news.json');
-        const data = await response.json();
+        const combined = await buildCombinedArticles();
+        const latest3 = combined.filter(a=>typeof a.id==='number').sort((a,b)=>b.id-a.id).slice(0,3);
+        
         const carousel = document.getElementById('carousel');
+        if(!carousel) return;
+        carousel.innerHTML = '';
         
-        const articles = data.articles;
-        const recentArticles = articles.slice(-3).reverse();
-        const totalArticles = articles.length;
-        
-        recentArticles.forEach((article, index) => {
+        latest3.forEach(article =>{
             const articleElement = document.createElement('div');
             articleElement.classList.add('carousel-item');
-
-            const reverseIndex = totalArticles - 1 - index;
-            const articleLink = `article.html?id=${reverseIndex}`;
-
+            const articleLink = `article.html?id=${encodeURIComponent(article.id)}`;
             articleElement.innerHTML = `
                 <img src="${article.imageUrl}" alt="${article.title}" class="carousel-image">
                 <h2>${article.title}</h2>
                 <p>${article.description}</p>
                 <a href="${articleLink}" class="read-more">Διαβάστε περισσότερα</a>
             `;
-
-            // Προσθήκη στο carousel
             carousel.appendChild(articleElement);
-        });
+
+        })
         
         slides = document.querySelectorAll('.carousel-item');
         const totalSlides = slides.length;

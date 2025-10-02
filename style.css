@@ -1,3 +1,7 @@
+:root{
+  --carousel-desc-lines: 3;   /* πόσες γραμμές θέλεις να φαίνονται */
+  --carousel-line-height: 1.6;
+}
 * {
     box-sizing: border-box;
     margin: 0;
@@ -206,13 +210,19 @@ img {
 }
 
 .carousel p {
-    width: 800px;
+    width: auto; 
+    max-width: 100%;
     font-size: 1rem;
     color: #555;
     margin-bottom: 15px;
     padding-right: 0;
     align-items: center;
-
+    overflow-wrap: anywhere; 
+    display: -webkit-box;
+    -webkit-line-clamp: var(--carousel-desc-lines);
+    -webkit-box-orient: vertical;
+    overflow: hidden;                 /* κόβει διακριτικά με ellipsis */
+    min-height: calc(var(--carousel-desc-lines) * 1em * var(--carousel-line-height));
 }
 
 .carousel h2 {
@@ -283,7 +293,7 @@ img {
 
 
 .read-more {
-    display: inline-block;
+    margin-top: auto;
     padding: 10px 20px;
     background-color: white;
     /* Αρχικό χρώμα */

@@ -1,0 +1,43 @@
+name: Update standings (EPS Argolida)
+
+on:
+  schedule:
+    # κάθε 6 ώρες (προσαρμόζεις όπως θες)
+    - cron: "0 */6 * * *"
+  workflow_dispatch: {}  # manual "Run workflow" από το GitHub UI
+  push:
+    paths:
+      - ".github/workflows/update-standings.yml"
+      - "python.py"
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install deps
+        run: |
+          python -m pip install --upgrade pip
+          pip install requests beautifulsoup4 lxml
+
+      - name: Run scraper
+        run: python python.py
+
+      - name: Commit & push if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/*.json
+          if ! git diff --cached --quiet; then
+            git commit -m "auto: update standings JSON"
+            git push
+          else
+            echo "No changes."
+          fi

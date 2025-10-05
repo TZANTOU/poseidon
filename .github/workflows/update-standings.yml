@@ -2,41 +2,82 @@ name: Update standings (EPS Argolida)
 
 on:
   schedule:
-    # κάθε 6 ώρες (προσαρμόζεις όπως θες)
+    # Κάθε ώρα Σάββατο(6) & Κυριακή(0) – σε UTC
     - cron: "0 * * * 6,0"
-  workflow_dispatch: {}  # manual "Run workflow" από το GitHub UI
-  push:
-    paths:
-      - ".github/workflows/update-standings.yml"
-      - "python.py"
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+concurrency:
+  group: update-standings
+  cancel-in-progress: false
 
 jobs:
   scrape:
     runs-on: ubuntu-latest
+    env:
+      # ΠΟΙΕΣ ΣΕΖΟΝ ΘΕΣ ΝΑ ΑΝΑΝΕΩΝΟΝΤΑΙ (χώρισε με κενά)
+      SEASONS: "25-26 24-25 23-24 22-23 21-22 20-21 19-20 18-19 17-18 16-17 15-16 14-15 13-14 12-13"
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Run only at 20:00 Athens
+        id: when
+        run: |
+          export TZ=Europe/Athens
+          hour="$(date +%H)"
+          dow="$(date +%u)" # 6=Σάββατο, 7=Κυριακή
+          echo "Local time: $(date)"
+          if [ "$hour" = "20" ] && { [ "$dow" = "6" ] || [ "$dow" = "7" ]; }; then
+            echo "ok=true" >> $GITHUB_OUTPUT
+          else
+            echo "ok=false" >> $GITHUB_OUTPUT
+          fi
+
       - name: Set up Python
+        if: steps.when.outputs.ok == 'true'
         uses: actions/setup-python@v5
         with:
           python-version: "3.11"
 
       - name: Install deps
+        if: steps.when.outputs.ok == 'true'
         run: |
           python -m pip install --upgrade pip
           pip install requests beautifulsoup4 lxml
 
-      - name: Run scraper
-        run: python python.py
+      - name: Run scraper for seasons
+        if: steps.when.outputs.ok == 'true'
+        run: |
+          mkdir -p data
+          for s in $SEASONS; do
+            echo "Scraping season $s..."
+            python python.py --season "$s" --out "data/ranking_${s}.json"
+          done
+          # Προαιρετικά: φτιάξε και ένα all_rankings.json αν θέλεις
+          python - << 'PY'
+          import json, glob
+          allr={}
+          for fp in sorted(glob.glob("data/ranking_*.json")):
+              season = fp.split("ranking_")[-1].split(".json")[0]
+              with open(fp, encoding="utf-8") as f:
+                  data=json.load(f)
+              allr[season]=data.get("ranking", data)
+          with open("data/all_rankings.json","w",encoding="utf-8") as f:
+              json.dump(allr,f,ensure_ascii=False,indent=2)
+          print("Wrote data/all_rankings.json")
+          PY
 
       - name: Commit & push if changed
+        if: steps.when.outputs.ok == 'true'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add data/*.json
           if ! git diff --cached --quiet; then
-            git commit -m "auto: update standings JSON"
+            git commit -m "auto: update standings JSON (Athens 20:00)"
             git push
           else
             echo "No changes."

@@ -80,7 +80,7 @@ function renderList(containerEl, ranking) {
   });
 }
 async function fetchSeasonData(season) {
-  const url = `ranking_${encodeURIComponent(season)}.json`;
+  const url = `data/ranking_${encodeURIComponent(season)}.json`;
   const res = await fetch(url, { cache: "no-store" });
   if (!res.ok) throw new Error(`HTTP ${res.status} για ${url}`);
   const data = await res.json();

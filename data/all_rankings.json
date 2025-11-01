@@ -979,12 +979,12 @@
     {
       "position": "1.",
       "name": "ΑΣΤΕΡΑΣ ΔΡΕΠΑΝΙΑΚΟΣ",
-      "points": "13"
+      "points": "16"
     },
     {
       "position": "2.",
       "name": "ΕΡΜΗΣ ΚΙΒΕΡΙΟΥ",
-      "points": "12"
+      "points": "15"
     },
     {
       "position": "3.",
@@ -1008,18 +1008,18 @@
     },
     {
       "position": "7.",
-      "name": "ΠΑΝΑΣΙΝΑΪΚΟΣ",
-      "points": "9"
-    },
-    {
-      "position": "8.",
       "name": "ΣΠΕΤΣΕΣ",
       "points": "9"
     },
     {
-      "position": "9.",
+      "position": "8.",
       "name": "ΕΝΩΣΗ ΕΡΜΙΟΝΙΔΑΣ",
-      "points": "6"
+      "points": "9"
+    },
+    {
+      "position": "9.",
+      "name": "ΠΑΝΑΣΙΝΑΪΚΟΣ",
+      "points": "9"
     },
     {
       "position": "10.",

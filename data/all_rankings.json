@@ -979,42 +979,42 @@
     {
       "position": "1.",
       "name": "ΑΣΤΕΡΑΣ ΔΡΕΠΑΝΙΑΚΟΣ",
-      "points": "16"
+      "points": "19"
     },
     {
       "position": "2.",
       "name": "ΕΡΜΗΣ ΚΙΒΕΡΙΟΥ",
-      "points": "15"
+      "points": "18"
     },
     {
       "position": "3.",
       "name": "ΤΡΟΙΖΗΝΙΑΚΟΣ",
-      "points": "13"
+      "points": "16"
     },
     {
       "position": "4.",
+      "name": "ΣΠΕΤΣΕΣ",
+      "points": "15"
+    },
+    {
+      "position": "5.",
       "name": "ΚΟΡΩΝΙΣ ΚΟΙΛΑΔΑΣ",
       "points": "13"
     },
     {
-      "position": "5.",
+      "position": "6.",
       "name": "ΕΘΝΙΚΟΣ ΤΟΛΟΥ",
       "points": "13"
     },
     {
-      "position": "6.",
-      "name": "ΣΠΕΤΣΕΣ",
+      "position": "7.",
+      "name": "ΕΝΩΣΗ ΕΡΜΙΟΝΙΔΑΣ",
       "points": "12"
     },
     {
-      "position": "7.",
+      "position": "8.",
       "name": "ΑΤΡΟΜΗΤΟΣ ΠΑΝΑΡΙΤΙΟΥ ΝΑΥΠΛΙΟΥ",
       "points": "10"
-    },
-    {
-      "position": "8.",
-      "name": "ΕΝΩΣΗ ΕΡΜΙΟΝΙΔΑΣ",
-      "points": "9"
     },
     {
       "position": "9.",

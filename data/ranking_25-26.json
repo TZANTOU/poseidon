@@ -2,23 +2,23 @@
   "ranking": [
     {
       "position": "1.",
+      "name": "ΕΡΜΗΣ ΚΙΒΕΡΙΟΥ",
+      "points": "63"
+    },
+    {
+      "position": "2.",
       "name": "ΑΣΤΕΡΑΣ ΔΡΕΠΑΝΙΑΚΟΣ",
       "points": "62"
     },
     {
-      "position": "2.",
-      "name": "ΕΡΜΗΣ ΚΙΒΕΡΙΟΥ",
-      "points": "60"
-    },
-    {
       "position": "3.",
       "name": "ΤΡΟΙΖΗΝΙΑΚΟΣ",
-      "points": "45"
+      "points": "48"
     },
     {
       "position": "4.",
       "name": "ΚΟΡΩΝΙΣ ΚΟΙΛΑΔΑΣ",
-      "points": "41"
+      "points": "44"
     },
     {
       "position": "5.",
@@ -43,7 +43,7 @@
     {
       "position": "9.",
       "name": "ΗΡΑΚΛΗΣ ΚΑΡΥΑΣ",
-      "points": "26"
+      "points": "29"
     },
     {
       "position": "10.",
